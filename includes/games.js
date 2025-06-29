@@ -43,39 +43,108 @@ const games = [
     // Add more games here as needed
   ];
 
-// Template for game card
-function createGameCard(game) {
-  return `
-    <div class="game-card">
+// Modern Game Card Component with enhanced features
+class GameCard {
+  constructor(game) {
+    this.game = game;
+    this.card = document.createElement('div');
+    this.card.className = 'game-card';
+    this.card.innerHTML = this.#template();
+    this.#addEventListeners();
+  }
+
+  #template() {
+    return `
       <div class="game-content-wrapper">
         <div class="game-icon-container">
-          <img src="${game.icon}" alt="${game.alt}" class="game-icon">
+          <img src="${this.game.icon}" alt="${this.game.alt}" class="game-icon" loading="lazy">
+          ${this.game.badge ? <span class="game-badge">${this.game.badge}</span> : ''}
         </div>
         <div class="game-info">
-          <h2 class="game-title">${game.title}</h2>
-          <p class="game-subtitle">${game.subtitle}</p>
+          <h2 class="game-title">${this.game.title}</h2>
+          <p class="game-subtitle">${this.game.subtitle}</p>
+          <div class="game-rating">
+            ${this.#generateStars(this.game.rating)}
+            <span class="rating-text">${this.game.rating}/5</span>
+          </div>
         </div>
       </div>
       <div class="store-buttons">
-        <a href="${game.appStoreUrl}" target="_blank" class="store-btn app-store-btn">
+        <a href="${this.game.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
           <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-          App Store
+          <span>App Store</span>
         </a>
-        <a href="${game.playStoreUrl}" target="_blank" class="store-btn play-store-btn">
+        <a href="${this.game.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
           <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-          Google Play
+          <span>Google Play</span>
         </a>
       </div>
-    </div>
-  `;
-}
+    `;
+  }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('games-container');
-  if (container) {
-    games.forEach(game => {
-      container.insertAdjacentHTML('beforeend', createGameCard(game));
+  #generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    let stars = '';
+    
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars += '<span class="star full">★</span>';
+      } else if (i === fullStars && hasHalfStar) {
+        stars += '<span class="star half">★</span>';
+      } else {
+        stars += '<span class="star empty">★</span>';
+      }
+    }
+    
+    return stars;
+  }
+
+  #addEventListeners() {
+    this.card.addEventListener('click', (e) => {
+      if (!e.target.closest('.store-btn')) {
+        // Handle card click (could expand for more details)
+        console.log(`Selected game: ${this.game.title}`);
+      }
     });
   }
+
+  render() {
+    return this.card;
+  }
+}
+
+// Modern Games Grid Initialization
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('games-container');
+  if (!container) return;
+
+  // Create IntersectionObserver for lazy loading
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Render each game with animation delay
+  games.forEach((game, index) => {
+    const card = new GameCard(game).render();
+    card.style.setProperty('--delay', `${index * 0.05}s`);
+    container.appendChild(card);
+    observer.observe(card);
+  });
+
+  // Add analytics tracking for store buttons
+  container.addEventListener('click', (e) => {
+    const storeBtn = e.target.closest('.store-btn');
+    if (storeBtn) {
+      const storeType = storeBtn.classList.contains('app-store-btn') ? 'App Store' : 'Google Play';
+      const gameTitle = storeBtn.closest('.game-card').querySelector('.game-title').textContent;
+      console.log(`Track: ${gameTitle} - ${storeType} click`);
+      // Replace with actual analytics tracking
+    }
+  });
 });
