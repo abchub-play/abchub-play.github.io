@@ -6,6 +6,7 @@
 .app-icon {
     width: 100px; /* Set a fixed width for the icons */
     height: auto; /* Maintain aspect ratio */
+    max-width: 50%; /* Prevents it from exceeding the container's width */
 }
 
 .label {
