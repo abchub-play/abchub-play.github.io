@@ -1,42 +1,42 @@
-[
+
     {
-      title: "HELLO GOVERNOR!",
-      subtitle: "Arcade Idle",
-      icon: "https://abchub-play.github.io/icons/games/hello-governor-icon.png",
-      alt: "Hello Governor!",
-      rating: 5,
-      badge: "New", // optional
-      appStoreUrl: "https://apps.apple.com/app/id6504637193",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.hello.governor"
+        "title": "HELLO GOVERNOR!",
+        "subtitle": "Arcade Idle",
+        "icon": "https://abchub-play.github.io/icons/games/hello-governor-icon.png",
+        "alt": "Hello Governor!",
+        "rating": 5,
+        "badge": "New",
+        "appStoreUrl": "https://apps.apple.com/app/id6504637193",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.hello.governor"
     },
     {
-      title: "Pocket Clash",
-      subtitle: "Real Time Strategy",
-      icon: "https://abchub-play.github.io/icons/games/pocket-clash-icon.png",
-      alt: "Pocket clash",
-      rating: 5,
-      badge: "New", // optional
-      appStoreUrl: "https://apps.apple.com/app/id6478879887",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.clash.pocket3d"
+        "title": "Pocket Clash",
+        "subtitle": "Real Time Strategy",
+        "icon": "https://abchub-play.github.io/icons/games/pocket-clash-icon.png",
+        "alt": "Pocket clash",
+        "rating": 5,
+        "badge": "New",
+        "appStoreUrl": "https://apps.apple.com/app/id6478879887",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.clash.pocket3d"
     },
     {
-      title: "Alien Grounds",
-      subtitle: "Action Puzzle",
-      icon: "https://abchub-play.github.io/icons/games/alien-grounds-icon.png",
-      alt: "Alien Grounds",
-      rating: 5,
-      badge: "New", // optional
-      appStoreUrl: "https://apps.apple.com/app/id6741333498",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.grounds.alien"
+        "title": "Alien Grounds",
+        "subtitle": "Action Puzzle",
+        "icon": "https://abchub-play.github.io/icons/games/alien-grounds-icon.png",
+        "alt": "Alien Grounds",
+        "rating": 5,
+        "badge": "New",
+        "appStoreUrl": "https://apps.apple.com/app/id6741333498",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.grounds.alien"
     },
     {
-      title: "2D Brawl",
-      subtitle: "Fighting, Multiplayer",
-      icon: "https://abchub-play.github.io/icons/games/2d-brawl-icon.png",
-      alt: "2D Brawl",
-      rating: 5,
-      badge: "New", // optional
-      appStoreUrl: "https://apps.apple.com/app/id6517361887",
-      playStoreUrl: "https://apps.apple.com/app/id6517361887" // Note: This appears to be the same as App Store URL
+        "title": "2D Brawl",
+        "subtitle": "Fighting, Multiplayer",
+        "icon": "https://abchub-play.github.io/icons/games/2d-brawl-icon.png",
+        "alt": "2D Brawl",
+        "rating": 5,
+        "badge": "New",
+        "appStoreUrl": "https://apps.apple.com/app/id6517361887",
+        "playStoreUrl": "https://apps.apple.com/app/id6517361887"
     }
 ]
