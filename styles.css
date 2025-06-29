@@ -1,3 +1,22 @@
+root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #4a4a4a;
+  --accent-color: #ff5e00;
+  --header-bg: #ffffff;
+  --games-bg: #f8f8f8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--primary-color);
+}
+
 /* Header/Navbar */
     .navbar {
       display: flex;
