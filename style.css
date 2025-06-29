@@ -1,7 +1,14 @@
-#panelpic1 {
-    content: url("https://picsum.photos/id/1/200/300");
-    float: left;
-    width: 250px;
-    height: 150px;
-    display: block;
+.app-link {
+    text-align: center; /* Center the content */
+    margin: 20px 0; /* Add some space between each section */
+}
+
+.app-icon {
+    width: 100px; /* Set a fixed width for the icons */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.label {
+    font-size: 18px; /* Set font size for labels */
+    margin-top: 10px; /* Space between icon and label */
 }
