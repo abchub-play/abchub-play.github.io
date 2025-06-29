@@ -1,5 +1,4 @@
-  <style>
-    :root {
+:root {
       --primary: #4361ee;
       --primary-dark: #3a56d4;
       --secondary: #ff6b6b;
@@ -166,7 +165,7 @@
       font-size: 0.95rem;
       transition: var(--transition);
       text-decoration: none;
-border: 2px solid transparent;
+      border: 2px solid transparent;
     }
     
     .app-store-btn {
@@ -193,7 +192,20 @@ border: 2px solid transparent;
       width: 24px;
       height: 24px;
     }
-
+    
+    /* Navbar Styles */
+    .navbar {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
     .logo {
       display: flex;
       align-items: center;
@@ -208,7 +220,47 @@ border: 2px solid transparent;
       color: var(--secondary);
       font-size: 2rem;
     }
-
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .active {
+      color: var(--primary);
+    }
+    
+    .active::after {
+      width: 100%;
+    }
+    
     /* Responsive Design */
     @media (max-width: 768px) {
       .games-grid {
@@ -222,6 +274,16 @@ border: 2px solid transparent;
       
       .games-description {
         font-size: 1.1rem;
+      }
+      
+      .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        gap: 15px;
       }
     }
     
@@ -251,7 +313,6 @@ border: 2px solid transparent;
       color: var(--primary);
       transform: translateY(-3px);
     }
-  </style>
 
 /* Header/Navbar */
     .navbar {
