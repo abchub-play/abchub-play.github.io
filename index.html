@@ -22,13 +22,109 @@
     </div>
     
     <div class="games-grid">
-      <!-- Game cards will be inserted here by JavaScript -->
+      <!-- Game cards will be dynamically inserted here -->
     </div>
 </main>
 
-<!-- Load scripts -->
+<!-- Load navbar script -->
 <script src="includes/navbar.js"></script>
-<script src="js/games.js"></script>
+
+<!-- Game data and rendering script -->
+<script>
+  // Game data array - easily add/remove/modify games here
+  const games = [
+    {
+      id: 1,
+      title: "ABC Adventure",
+      subtitle: "Learn letters through exciting quests",
+      icon: "https://abchub-play.github.io/icons/game1.png",
+      rating: 4.2,
+      badge: "NEW",
+      appStoreLink: "https://apps.apple.com",
+      playStoreLink: "https://play.google.com"
+    },
+    {
+      id: 2,
+      title: "Math Maze",
+      subtitle: "Solve puzzles to escape the number labyrinth",
+      icon: "https://abchub-play.github.io/icons/game2.png",
+      rating: 4.5,
+      badge: null,
+      appStoreLink: "https://apps.apple.com",
+      playStoreLink: "https://play.google.com"
+    },
+    {
+      id: 3,
+      title: "Word World",
+      subtitle: "Build vocabulary with interactive challenges",
+      icon: "https://abchub-play.github.io/icons/game3.png",
+      rating: 4.8,
+      badge: "HOT",
+      appStoreLink: "https://apps.apple.com",
+      playStoreLink: "https://play.google.com"
+    }
+  ];
+
+  // Function to generate star rating HTML
+  function generateRatingStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    let starsHTML = '';
+    
+    // Add full stars
+    starsHTML += '★'.repeat(fullStars);
+    
+    // Add half star if needed
+    if (hasHalfStar) starsHTML += '½';
+    
+    // Add empty stars
+    starsHTML += '☆'.repeat(emptyStars);
+    
+    return starsHTML;
+  }
+
+  // Function to generate a game card
+  function createGameCard(game) {
+    return `
+      <div class="game-card" data-game-id="${game.id}">
+        <div class="game-content-wrapper">
+          <div class="game-icon-container">
+            <img src="${game.icon}" alt="${game.title}" class="game-icon" loading="lazy">
+            ${game.badge ? <span class="game-badge">${game.badge}</span> : ''}
+          </div>
+          <div class="game-info">
+            <h2 class="game-title">${game.title}</h2>
+            <p class="game-subtitle">${game.subtitle}</p>
+            <div class="game-rating">
+              ${generateRatingStars(game.rating)}
+              <span class="rating-text">${game.rating.toFixed(1)}/5</span>
+            </div>
+          </div>
+        </div>
+        <div class="store-buttons">
+          <a href="${game.appStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
+            <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
+            <span>App Store</span>
+          </a>
+          <a href="${game.playStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
+            <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
+            <span>Google Play</span>
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  // Render all game cards when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const gamesGrid = document.querySelector('.games-grid');
+    games.forEach(game => {
+      gamesGrid.innerHTML += createGameCard(game);
+    });
+  });
+</script>
     
 </body>
 </html>
