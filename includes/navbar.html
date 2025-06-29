@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Vibrant Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -109,12 +110,12 @@
             width: 100%;
         }
         
-        .nav-link[aria-current="page"] {
+        .nav-link.active {
             color: #fff;
             font-weight: 600;
         }
         
-        .nav-link[aria-current="page"]::after {
+        .nav-link.active::after {
             width: 100%;
             background: linear-gradient(90deg, #ff6b6b, #ffa502);
         }
@@ -138,38 +139,43 @@
         }
         
         .cta-button:active {
-            transform: translateY(0);
+transform: translateY(0);
         }
         
         /* Responsive styles */
-.menu-toggle {
+        .menu-toggle {
             display: none;
             background: none;
             border: none;
             color: white;
             font-size: 1.8rem;
             cursor: pointer;
+            z-index: 1001;
         }
         
-        /* Content Styles */
-        .content {
-            padding: 40px 0;
-            text-align: center;
+        /* Page Content Styles */
+        .page-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            max-width: 800px;
+            width: 100%;
         }
         
-        h1 {
-            font-size: 3.5rem;
+        .page-content h1 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #ff9a9e, #fad0c4, #a1c4fd);
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
-        p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
+        .page-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
             color: #b8c1ec;
         }
         
@@ -217,33 +223,29 @@
             
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 0;
                 left: 0;
-                width: 100%;
+                right: 0;
+                bottom: 0;
                 background: rgba(10, 15, 35, 0.98);
                 flex-direction: column;
-                gap: 0;
-                padding: 20px 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.4s ease;
+                justify-content: center;
+                gap: 30px;
+                clip-path: circle(0px at calc(100% - 55px) 45px);
+                transition: clip-path 0.6s ease;
+                z-index: 1000;
             }
             
             .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                clip-path: circle(150% at calc(100% - 55px) 45px);
             }
             
             .nav-link {
-                width: 100%;
-                text-align: center;
-                padding: 15px 0;
+                font-size: 1.4rem;
             }
             
             .company-name {
                 font-size: 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
             }
         }
     </style>
@@ -253,16 +255,62 @@
     <nav class="navbar" aria-label="Main navigation">
         <div class="company-name">A,B,C & Friendly Play</div>
         
-        <button class="menu-toggle" id="menuToggle">☰</button>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
         
         <div class="nav-links" id="navLinks">
-            <a href="index.html" class="nav-link" aria-current="page">Games</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-            <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+            <a href="index.html" class="nav-link" id="gamesLink">Games</a>
+            <a href="contact.html" class="nav-link" id="contactLink">Contact</a>
+            <a href="privacy-policy.html" class="nav-link" id="privacyLink">Privacy Policy</a>
+            <button class="cta-button">Play Now</button>
         </div>
     </nav>
 
+    <div class="container">
+        <div class="page-content" id="pageContent">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+    </div>
+
     <script>
+        // Function to determine and set the active page
+        function setActivePage() {
+            const path = window.location.pathname;
+const page = path.split("/").pop();
+            
+            // Remove active class from all links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Set active class based on current page
+            if (page === "index.html" || page === "") {
+                document.getElementById('gamesLink').classList.add('active');
+                document.getElementById('pageContent').innerHTML = `
+                    <h1>Welcome to Our Games Platform</h1>
+                    <p>Discover a world of fun and educational games designed for all ages. Our collection includes puzzles, adventures, and learning games that make playtime meaningful.</p>
+                    <p>Explore our catalog and find your next favorite game!</p>
+                `;
+            } 
+            else if (page === "contact.html") {
+                document.getElementById('contactLink').classList.add('active');
+                document.getElementById('pageContent').innerHTML = `
+                    <h1>Get in Touch With Us</h1>
+                    <p>Have questions or feedback? We'd love to hear from you! Our team is ready to assist you with any inquiries.</p>
+                    <p>Email: contact@abcplay.com<br>Phone: +1 (555) 123-4567</p>
+                `;
+            } 
+            else if (page === "privacy-policy.html") {
+                document.getElementById('privacyLink').classList.add('active');
+                document.getElementById('pageContent').innerHTML = `
+                    <h1>Your Privacy Matters</h1>
+                    <p>At A,B,C & Friendly Play, we take your privacy seriously. Our policy outlines how we collect, use, and protect your information.</p>
+                    <p>We never sell your data to third parties and ensure all information is securely stored and processed.</p>
+                `;
+            }
+        }
+        
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
@@ -279,17 +327,21 @@
         
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
         
-        // Animate gradient on company name
-        const companyName = document.querySelector('.company-name');
-        companyName.addEventListener('mouseover', () => {
-            companyName.style.animation = 'gradientShift 1.5s linear infinite';
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
         });
         
-        companyName.addEventListener('mouseout', () => {
-            companyName.style.animation = 'gradientShift 3s linear infinite';
-        });
+        // Set active page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', setActivePage);
     </script>
 </body>
 </html>
