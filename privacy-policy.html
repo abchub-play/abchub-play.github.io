@@ -1,111 +1,275 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy</title>
+  <title>Privacy Policy - ABC & Friendly Play</title>
   <link rel="stylesheet" href="https://abchub-play.github.io/css/styles.css">
-  <!-- Add Inter font if needed -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --secondary: #3f37c9;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --light-gray: #f1f3f5;
+      --border-radius: 8px;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: #fafafa;
+    }
+    
+    .privacy-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    
+    .privacy-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .privacy-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .privacy-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .effective-date {
+      display: inline-block;
+      background: var(--light-gray);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    
+    .privacy-content {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .policy-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .section-title:before {
+      content: "•";
+      color: var(--primary);
+      font-size: 2rem;
+      margin-right: 0.75rem;
+      line-height: 1;
+    }
+    
+    .section-content {
+      color: var(--dark);
+    }
+    
+    .section-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .section-content ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    
+    .section-content li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .section-content li:before {
+      content: "—";
+      position: absolute;
+      left: -1.5rem;
+      color: var(--primary-light);
+    }
+    
+    .contact-link {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .contact-link:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+      .privacy-container {
+        padding: 0 1rem;
+      }
+      
+      .privacy-title {
+        font-size: 2rem;
+      }
+      
+      .privacy-content {
+        padding: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <!-- Navbar will be auto-inserted here -->
 <div id="navbar-container"></div>
 
-<!-- Your page content here -->
-<main>
-    <h1>Privacy Policy</h1>
-    <p>Privacy Policy for Dmitriy Sychev and A,B,C games and Friendly Play</p>
-
-<p>Effective Date: 2025.11.11</p>
-
-<p>1. Introduction
-
-Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.
-
-2. Information We Collect
-
-We may collect the following types of information:
-
-• Personal Information: When you create an account or make in-game purchases, we may collect personal information such as your name, email address, and payment information.
-
+<!-- Page content -->
+<main class="privacy-container">
+  <header class="privacy-header">
+    <h1 class="privacy-title">Privacy Policy</h1>
+    <p class="privacy-subtitle">Your privacy matters to us. This policy explains how we handle your information in ABC Games and Friendly Play.</p>
+    <div class="effective-date">Effective Date: November 11, 2025</div>
+  </header>
   
-• Usage Data: We collect data about how you interact with our game, including your gameplay activity, device information (e.g., device type, operating system), and IP address.
-
-• Analytics Data: We use third-party analytics services (e.g., Facebook Analytics) to help us understand how players use our game. These services may collect information sent by your device or our game, including cookies and usage data.
-
-• Advertising Data: We may show ads in our game. Third-party advertisers may collect information about your interactions with these ads.
-
-3. How We Use Your Information
-
-We may use the information we collect for various purposes, including:
-
-• To provide and maintain our game
-
-• To process in-game purchases
-
-• To personalize your gaming experience
-
-• To analyze usage and improve our game
-
-• To communicate with you, including sending updates and promotional materials
-
-• To display advertisements that are relevant to you
-
-4. Sharing Your Information
-
-We may share your information in the following situations:
-
-• With Service Providers: We may share your information with third-party service providers who assist us in operating our game, conducting our business, or servicing you (e.g., payment processors, analytics providers).
-
-• For Advertising: We may share non-personal information with third-party advertisers to serve ads that are relevant to you.
-
-• Legal Requirements: We may disclose your information if required to do so by law or in response to valid requests by public authorities.
-
-5. Cookies and Tracking Technologies
-
-We use cookies and similar tracking technologies to monitor activity on our game and store certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our game.
-
-6. In-Game Purchases
-
-If you make in-game purchases, we collect payment information through our payment processors. We do not store your credit card information; it is managed by the payment processor in accordance with their privacy policy.
-
-7. Children's Privacy
-
-Our game is not primarily intended for children under the age of 13. We do not knowingly collect personal information from children under this age. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.
-
-8. Your Rights
-
-Depending on your location, you may have the following rights regarding your personal information:
-
-• The right to access the personal data we hold about you
-
-• The right to request correction of any inaccurate data
-
-• The right to request deletion of your personal data
-
-• The right to object to processing or request restriction of processing
-
-To exercise these rights, please contact us at abchub.help@gmail.com.
-
-9. Changes to This Privacy Policy
-
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.
-
-10. Contact Us
-
-If you have any questions about this Privacy Policy, please contact us:
-
-• Email: abchub.help@gmail.com
-
-• Address: Russia, Cherepovets, Pervomayskaya st. 50
-
-Thank you for playing A,B,C games!
-</p>
+  <div class="privacy-content">
+    <section class="policy-section">
+      <h2 class="section-title">1. Introduction</h2>
+      <div class="section-content">
+        <p>Welcome to A,B,C games! Your privacy is important to us.This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">2. Information We Collect</h2>
+      <div class="section-content">
+        <p>We may collect the following types of information:</p>
+        <ul>
+          <li><strong>Personal Information:</strong> When you create an account or make in-game purchases, we may collect personal information such as your name, email address, and payment information.</li>
+          <li><strong>Usage Data:</strong> We collect data about how you interact with our game, including your gameplay activity, device information (e.g., device type, operating system), and IP address.</li>
+          <li><strong>Analytics Data:</strong> We use third-party analytics services (e.g., Facebook Analytics) to help us understand how players use our game.</li>
+          <li><strong>Advertising Data:</strong> We may show ads in our game. Third-party advertisers may collect information about your interactions with these ads.</li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">3. How We Use Your Information</h2>
+      <div class="section-content">
+        <p>We may use the information we collect for various purposes, including:</p>
+        <ul>
+          <li>To provide and maintain our game</li>
+          <li>To process in-game purchases</li>
+          <li>To personalize your gaming experience</li>
+          <li>To analyze usage and improve our game</li>
+          <li>To communicate with you, including sending updates and promotional materials</li>
+          <li>To display advertisements that are relevant to you</li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">4. Sharing Your Information</h2>
+      <div class="section-content">
+        <p>We may share your information in the following situations:</p>
+        <ul>
+          <li><strong>With Service Providers:</strong> We may share your information with third-party service providers who assist us in operating our game.</li>
+          <li><strong>For Advertising:</strong> We may share non-personal information with third-party advertisers.</li>
+          <li><strong>Legal Requirements:</strong> We may disclose your information if required to do so by law.</li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">5. Cookies and Tracking Technologies</h2>
+      <div class="section-content">
+        <p>We use cookies and similar tracking technologies to monitor activity on our game and store certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our game.</p>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">6. In-Game Purchases</h2>
+      <div class="section-content">
+        <p>If you make in-game purchases, we collect payment information through our payment processors. We do not store your credit card information; it is managed by the payment processor in accordance with their privacy policy.</p>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">7. Children's Privacy</h2>
+      <div class="section-content">
+        <p>Our game is not primarily intended for children under the age of 13. We do not knowingly collect personal information from children under this age. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.</p>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">8. Your Rights</h2>
+      <div class="section-content"><p>Depending on your location, you may have the following rights regarding your personal information:</p>
+        <ul>
+          <li>The right to access the personal data we hold about you</li>
+          <li>The right to request correction of any inaccurate data</li>
+          <li>The right to request deletion of your personal data</li>
+          <li>The right to object to processing or request restriction of processing</li>
+        </ul>
+        <p>To exercise these rights, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">9. Changes to This Privacy Policy</h2>
+      <div class="section-content">
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top.</p>
+      </div>
+    </section>
+    
+    <section class="policy-section">
+      <h2 class="section-title">10. Contact Us</h2>
+      <div class="section-content">
+        <p>If you have any questions about this Privacy Policy, please contact us:</p>
+        <ul>
+          <li>Email: abchub.help@gmail.com</li>
+          <li>Address: Russia, Cherepovets, Pervomayskaya st. 50</li>
+        </ul>
+      </div>
+    </section>
+    
+  </div>
 </main>
 
-    <!-- Load navbar script -->
+<!-- Load navbar script -->
 <script src="includes/navbar.js"></script>
     
 </body>
