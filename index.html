@@ -87,7 +87,7 @@
   // Load game data and render cards
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await fetch('https://abchub-play.github.io/games.json');
+      const response = await fetch('games.json');
       if (!response.ok) {
         throw new Error('Failed to load games data');
       }
