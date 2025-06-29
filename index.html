@@ -4,109 +4,697 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Games - ABC & Friendly Play</title>
-  <link rel="stylesheet" href="https://abchub-play.github.io/css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding-top: 90px;
+      overflow-x: hidden;
+    }
+    
+    /* Modern Navbar Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar.scrolled {
+      background: rgba(10, 15, 35, 0.95);
+      padding: 10px 40px;
+    }
+    
+    .company-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, #ff6b6b, #ffa502, #ff6b6b);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 3s linear infinite;
+      letter-spacing: -0.5px;
+    }
+    
+    .company-name::before {
+      content: "🎮";
+      font-size: 1.5rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    
+    .nav-link {
+      position: relative;
+      text-decoration: none;
+      color: #e0e0e0;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 8px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: #fff;
+    }
+    
+    .nav-link.active {
+      color: #fff;
+      font-weight: 600;
+    }
+    
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b, #ffa502);
+      border-radius: 3px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 80px 20px;
+      text-align: center;
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+    
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #a1c4fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: #b8c1ec;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
+    }
+    
+    /* Games Section */
+    .games-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 5px;
+      background: linear-gradient(90deg, #ff6b6b, #ffa502);
+      border-radius: 5px;
+    }
+    
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 40px;
+    }
+    
+    .game-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .game-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #ff6b6b, #ffa502);
+    }
+    
+    .game-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .game-content-wrapper {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .game-icon-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .game-icon {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+      transition: transform 0.3s ease;
+    }
+    
+    .game-card:hover .game-icon {
+      transform: scale(1.1);
+    }
+    
+    .game-info {
+      text-align: center;
+    }
+    
+    .game-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ffd166, #ffa502);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .game-subtitle {
+      color: #b8c1ec;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    
+    .game-rating {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+    
+    .stars {
+      color: #ffd166;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+    }
+    
+    .rating-text {
+      color: #b8c1ec;
+      font-weight: 600;
+    }
+    
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .store-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+    
+    .store-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* Features Section */
+    .features {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 80px 20px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .feature-card {
+      text-align: center;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .feature-icon {
+      font-size: 3.5rem;
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .feature-title {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      color: #ffd166;
+    }
+    
+    .feature-description {
+      color: #b8c1ec;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 60px 20px 30px;
+      text-align: center;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-link {
+      color: #b8c1ec;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: #ffa502;
+    }
+    
+    .copyright {
+      color: #b8c1ec;
+      font-size: 1rem;
+      margin-top: 30px;
+    }
+    
+    /* Animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    .game-card:nth-child(1) { animation-delay: 0.1s; }
+    .game-card:nth-child(2) { animation-delay: 0.2s; }
+    .game-card:nth-child(3) { animation-delay: 0.3s; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-title {
+        font-size: 3.2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.3rem;
+      }
+      
+      .section-title {
+        font-size: 2.3rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+      
+      .company-name {
+        font-size: 1.5rem;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+      
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .store-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .store-btn {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Navbar will be auto-inserted here -->
-<div id="navbar-container"></div>
+<!-- Modern Vibrant Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="company-name">A,B,C & Friendly Play</div>
+  
+  <div class="nav-links">
+    <a href="index.html" class="nav-link active">Games</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+  </div>
+</nav>
 
-<!-- Page content -->
-<main class="games-container">
-    <div class="games-header">
-      <h1 class="games-heading">Our Games</h1>
-      <p class="games-description">
-        Discover our collection of fun and engaging games for all ages
-      </p>
+<!-- Hero Section -->
+<section class="hero">
+  <h1 class="hero-title">Play. Learn. Grow.</h1>
+  <p class="hero-subtitle">Discover our collection of vibrant, friendly games designed for all ages. Play, learn and have fun with our interactive experiences.</p>
+  <button class="cta-button">
+    <i class="fas fa-play-circle"></i> Start Playing
+  </button>
+</section>
+
+<!-- Games Section -->
+<section class="games-container">
+  <h2 class="section-title">Our Featured Games</h2>
+  
+  <div class="games-grid">
+    <!-- Game Card 1 -->
+    <div class="game-card floating">
+      <div class="game-badge">NEW</div>
+      <div class="game-content-wrapper">
+        <div class="game-icon-container">
+          <img src="https://abchub-play.github.io/icons/game1.png" alt="ABC Adventure" class="game-icon" loading="lazy">
+        </div>
+        <div class="game-info">
+          <h2 class="game-title">ABC Adventure</h2>
+          <p class="game-subtitle">Learn letters through exciting quests</p>
+          <div class="game-rating">
+            <div class="stars">★★★★☆</div>
+            <span class="rating-text">4.2/5</span>
+          </div>
+        </div>
+      </div>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
+          <span>App Store</span>
+        </a>
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
+          <span>Google Play</span>
+        </a>
+      </div>
     </div>
     
-    <div class="games-grid">
-      <!-- Game Card 1 -->
-      <div class="game-card">
-        <div class="game-content-wrapper">
-          <div class="game-icon-container">
-            <img src="https://abchub-play.github.io/icons/game1.png" alt="ABC Adventure" class="game-icon" loading="lazy">
-            <span class="game-badge">NEW</span>
-          </div>
-          <div class="game-info">
-            <h2 class="game-title">ABC Adventure</h2>
-            <p class="game-subtitle">Learn letters through exciting quests</p>
-            <div class="game-rating">
-              ★★★★☆
-              <span class="rating-text">4.2/5</span>
-            </div>
-          </div>
+    <!-- Game Card 2 -->
+    <div class="game-card floating">
+      <div class="game-content-wrapper">
+        <div class="game-icon-container">
+          <img src="https://abchub-play.github.io/icons/game2.png" alt="Math Maze" class="game-icon" loading="lazy">
         </div>
-        <div class="store-buttons">
-          <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
-            <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-            <span>App Store</span>
-          </a>
-          <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
-            <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-            <span>Google Play</span>
-          </a>
+        <div class="game-info">
+          <h2 class="game-title">Math Maze</h2>
+          <p class="game-subtitle">Solve puzzles to escape the number labyrinth</p>
+          <div class="game-rating">
+            <div class="stars">★★★★☆</div>
+            <span class="rating-text">4.5/5</span>
+          </div>
         </div>
       </div>
-      
-      <!-- Game Card 2 -->
-      <div class="game-card">
-        <div class="game-content-wrapper">
-          <div class="game-icon-container">
-            <img src="https://abchub-play.github.io/icons/game2.png" alt="Math Maze" class="game-icon" loading="lazy">
-          </div>
-          <div class="game-info">
-            <h2 class="game-title">Math Maze</h2>
-            <p class="game-subtitle">Solve puzzles to escape the number labyrinth</p>
-            <div class="game-rating">
-              ★★★★☆
-              <span class="rating-text">4.5/5</span>
-            </div>
-          </div>
-        </div>
-        <div class="store-buttons">
-          <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
-            <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-            <span>App Store</span>
-          </a>
-          <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
-            <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-            <span>Google Play</span>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Game Card 3 -->
-      <div class="game-card">
-        <div class="game-content-wrapper">
-          <div class="game-icon-container">
-            <img src="https://abchub-play.github.io/icons/game3.png" alt="Word World" class="game-icon" loading="lazy">
-            <span class="game-badge">HOT</span>
-          </div>
-          <div class="game-info">
-            <h2 class="game-title">Word World</h2>
-            <p class="game-subtitle">Build vocabulary with interactive challenges</p>
-            <div class="game-rating">
-              ★★★★★
-              <span class="rating-text">4.8/5</span>
-            </div>
-          </div>
-        </div> <div class="store-buttons"> <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
-            <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-            <span>App Store</span>
-          </a>
-          <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
-            <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-            <span>Google Play</span>
-          </a>
-        </div>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
+          <span>App Store</span>
+        </a>
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
+          <span>Google Play</span>
+        </a>
       </div>
     </div>
-</main>
+    
+    <!-- Game Card 3 -->
+    <div class="game-card floating">
+      <div class="game-badge">HOT</div>
+      <div class="game-content-wrapper">
+        <div class="game-icon-container">
+          <img src="https://abchub-play.github.io/icons/game3.png" alt="Word World" class="game-icon" loading="lazy">
+        </div>
+        <div class="game-info">
+          <h2 class="game-title">Word World</h2>
+          <p class="game-subtitle">Build vocabulary with interactive challenges</p>
+          <div class="game-rating">
+            <div class="stars">★★★★★</div>
+            <span class="rating-text">4.8/5</span>
+          </div>
+        </div>
+      </div>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
+          <span>App Store</span>
+        </a>
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
+          <span>Google Play</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- Load navbar script -->
-<script src="includes/navbar.js"></script>
+<!-- Features Section -->
+<section class="features">
+  <div class="features-container">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <h3 class="feature-title">Educational</h3>
+      <p class="feature-description">Our games combine fun with learning to help develop cognitive skills while entertaining.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <h3 class="feature-title">Family Friendly</h3>
+      <p class="feature-description">Safe environment with content suitable for players of all ages. Perfect for family time.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-gamepad"></i>
+      </div>
+      <h3 class="feature-title">Multiplayer Fun</h3>
+      <p class="feature-description">Connect with friends and family for collaborative gaming sessions and shared experiences.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="index.html" class="footer-link">Games</a>
+    <a href="contact.html" class="footer-link">Contact</a>
+    <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+    <a href="#" class="footer-link">Terms of Service</a>
+    <a href="#" class="footer-link">FAQ</a>
+  </div>
+  
+  <p class="copyright">© 2025 A,B,C & Friendly Play. All rights reserved.</p>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+  
+  // Add active class to current nav item
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (currentPage === linkPage || (currentPage === "" && linkPage === "index.html")) {
+        link.classList.add('active');
+      }
+    });
+  });
+  
+  // Floating animation for game cards
+  document.querySelectorAll('.floating').forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.2}s`;
+  });
+  
+  // CTA button animation
+  const ctaButton = document.querySelector('.cta-button');
+  ctaButton.addEventListener('mouseover', () => {
+    ctaButton.style.animation = 'none';
+    setTimeout(() => {
+      ctaButton.style.animation = 'float 1s ease-in-out';
+    }, 10);
+  });
+</script>
     
 </body>
 </html>
