@@ -2,7 +2,7 @@
 const gamesData = [
   {
     id: 1,
-    icon: 'https://abchub-play.github.io/icons/game1.png',
+    icon: 'https://abchub-play.github.io/icons/google-play-icon.png',
     alt: 'ABC Adventure',
     badge: 'NEW',
     title: 'ABC Adventure',
@@ -13,7 +13,7 @@ const gamesData = [
   },
   {
     id: 2,
-    icon: 'https://abchub-play.github.io/icons/game2.png',
+    icon: 'https://abchub-play.github.io/icons/google-play-icon.png',
     alt: 'Math Maze',
     title: 'Math Maze',
     subtitle: 'Solve puzzles to escape the number labyrinth',
@@ -23,7 +23,7 @@ const gamesData = [
   },
   {
     id: 3,
-    icon: 'https://abchub-play.github.io/icons/game3.png',
+    icon: 'https://abchub-play.github.io/icons/google-play-icon.png',
     alt: 'Word World',
     badge: 'HOT',
     title: 'Word World',
