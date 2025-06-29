@@ -10,25 +10,8 @@
 </head>
 <body>
 
-  <!-- On index.html -->
-<a href="index.html" class="nav-link" aria-current="page">Games</a>
-<a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
-
-<!-- Navbar will be inserted here -->
-    <div id="navbar-container"></div>
-    <script>
-        // Load navbar
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-                
-                // Make sure links load in the main window
-                document.querySelectorAll('#navbar-container a').forEach(link => {
-                    link.target = '_top';
-                });
-            });
-    </script>
+<!-- Load navbar script -->
+  <script src="includes/navbar.js"></script>
   
 <div class="games-grid">
   <!-- Paste your 10 Hello Governor cards here -->
