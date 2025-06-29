@@ -1,21 +1,186 @@
-.app-link {
-    text-align: center; /* Center the content */
-    margin: 20px 0; /* Add some space between each section */
-}
+/* Header/Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--header-bg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-.app-icon {
-    width: 100px; /* Set a fixed width for the icons */
-    height: auto; /* Maintain aspect ratio */
-    max-width: 50%; /* Prevents it from exceeding the container's width */
-}
+    .company-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
 
-.store-icon {
-    width: 48px; /* Set a fixed width for the icons */
-    height: auto; /* Maintain aspect ratio */
-    max-width: 15%; /* Prevents it from exceeding the container's width */
-}
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
 
-.label {
-    font-size: 18px; /* Set font size for labels */
-    margin-top: 10px; /* Space between icon and label */
-}
+    .nav-link {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-color);
+    }
+
+    /* Our Games Section */
+    .section-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: var(--secondary-color);
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      scroll-snap-align: start;
+      flex: 0 0 280px;
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+.game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .game-content-wrapper {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .game-icon-container {
+      flex-shrink: 0;
+    }
+
+    .game-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      object-fit: contain;
+    }
+
+    .game-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .game-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--primary-color);
+    }
+
+    .game-subtitle {
+      font-size: 14px;
+      color: var(--secondary-color);
+      font-weight: 500;
+    }
+
+    .store-buttons {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px 20px 20px;
+    }
+
+    .store-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .app-store-btn {
+      background: #000;
+      color: white;
+    }
+
+    .play-store-btn {
+      background: #4285F4;
+      color: white;
+    }
+
+    .store-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+
+    .store-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .game-content-wrapper {
+        padding: 15px;
+      }
+      
+      .store-buttons {
+        flex-direction: column;
+        padding: 0 15px 15px 15px;
+      }
+    }
