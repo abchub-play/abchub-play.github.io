@@ -4,161 +4,388 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - ABC & Friendly Play</title>
-  <link rel="stylesheet" href="https://abchub-play.github.io/css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --primary: #4361ee;
-      --primary-light: #4895ef;
-      --secondary: #3f37c9;
-      --dark: #1a1a2e;
-      --light: #f8f9fa;
-      --gray: #6c757d;
-      --light-gray: #f1f3f5;
-      --border-radius: 8px;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      --transition: all 0.3s ease;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     
     body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: var(--dark);
-      background-color: #fafafa;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding-top: 90px;
+      line-height: 1.7;
     }
     
+    /* Modern Navbar Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .company-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, #ff6b6b, #ffa502, #ff6b6b);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 3s linear infinite;
+      letter-spacing: -0.5px;
+    }
+    
+    .company-name::before {
+      content: "🎮";
+      font-size: 1.5rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    
+    .nav-link {
+      position: relative;
+      text-decoration: none;
+      color: #e0e0e0;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 8px 0;
+    }
+    
+    .nav-link.active {
+      color: #fff;
+      font-weight: 600;
+    }
+    
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b, #ffa502);
+      border-radius: 3px;
+    }
+    
+    /* Privacy Policy Styles */
     .privacy-container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
     
     .privacy-header {
       text-align: center;
-      margin-bottom: 3rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .privacy-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--dark);
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #a1c4fd);
       -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
     }
     
     .privacy-subtitle {
-      font-size: 1.1rem;
-      color: var(--gray);
+      font-size: 1.3rem;
+      color: #b8c1ec;
       max-width: 700px;
-      margin: 0 auto;
+      margin: 0 auto 20px;
     }
     
     .effective-date {
       display: inline-block;
-      background: var(--light-gray);
-      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 10px 25px;
       border-radius: 50px;
-      font-size: 0.9rem;
-      margin-top: 1rem;
-      color: var(--dark);
-      font-weight: 500;
+      font-size: 1.1rem;
+      margin-top: 15px;
+      color: #ffd166;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .privacy-content {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 2.5rem;
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     }
     
     .policy-section {
-      margin-bottom: 2.5rem;
-    }
-    
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-    }
-    
-    .section-title:before {
-      content: "•";
-      color: var(--primary);
-      font-size: 2rem;
-      margin-right: 0.75rem;
-      line-height: 1;
-    }
-    
-    .section-content {
-      color: var(--dark);
-    }
-    
-    .section-content p {
-      margin-bottom: 1rem;
-    }
-    
-    .section-content ul {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-    }
-    
-    .section-content li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
       position: relative;
     }
     
-    .section-content li:before {
-      content: "—";
+    .policy-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #ff9a9e;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 40px;
+    }
+    
+    .section-title::before {
+      content: '';
       position: absolute;
-      left: -1.5rem;
-      color: var(--primary-light);
+      left: 0;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #16213e;
+    }
+    
+    .section-title:nth-child(1)::before { content: '1'; }
+    .section-title:nth-child(2)::before { content: '2'; }
+    .section-title:nth-child(3)::before { content: '3'; }
+    .section-title:nth-child(4)::before { content: '4'; }
+    .section-title:nth-child(5)::before { content: '5'; }
+    .section-title:nth-child(6)::before { content: '6'; }
+    
+    .section-content {
+      color: #e0e0e0;
+      padding-left: 40px;
+    }
+    
+    .section-content p {
+      margin-bottom: 20px;
+    }
+    
+    .section-content ul {
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+    
+    .section-content li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .section-content li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      border-radius: 50%;
+    }
+    
+    .highlight {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+      border-left: 4px solid #ff6b6b;
     }
     
     .contact-link {
-      color: var(--primary);
+      color: #ffa502;
       font-weight: 600;
       text-decoration: none;
-      transition: var(--transition);
+      transition: all 0.3s ease;
+      position: relative;
     }
     
     .contact-link:hover {
-      color: var(--secondary);
+      color: #ff6b6b;
       text-decoration: underline;
     }
     
-    @media (max-width: 768px) {
-      .privacy-container {
-        padding: 0 1rem;
+    .contact-link::after {
+      content: '↗';
+      margin-left: 5px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-link:hover::after {
+      transform: translate(3px, -3px);
+    }
+    
+    .privacy-footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #b8c1ec;
+      font-size: 1.1rem;
+    }
+    
+    .privacy-footer a {
+      color: #ffd166;
+      text-decoration: none;
+    }
+    
+    /* Animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .policy-section {
+      animation: fadeIn 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .policy-section:nth-child(1) { animation-delay: 0.1s; }
+    .policy-section:nth-child(2) { animation-delay: 0.2s; }
+    .policy-section:nth-child(3) { animation-delay: 0.3s; }
+    .policy-section:nth-child(4) { animation-delay: 0.4s; }
+    .policy-section:nth-child(5) { animation-delay: 0.5s; }
+    .policy-section:nth-child(6) { animation-delay: 0.6s; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .privacy-content {
+        padding: 30px;
       }
       
+      .privacy-title {
+        font-size: 2.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+        padding-left: 35px;
+      }
+      
+      .section-title::before {
+        width: 25px;
+        height: 25px;
+      }
+      
+      .section-content {
+        padding-left: 35px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+      
+      .company-name {
+        font-size: 1.5rem;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+      
+      .privacy-title {
+        font-size: 2.2rem;
+      }
+      
+      .privacy-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .privacy-content {
+        padding: 25px 20px;
+      }
+      
+      .section-title {
+        font-size: 1.3rem;
+        padding-left: 30px;
+      }
+      
+      .section-content {
+        padding-left: 0;
+      }
+    }
+    
+    @media (max-width: 480px) {
       .privacy-title {
         font-size: 2rem;
       }
       
-      .privacy-content {
-        padding: 1.5rem;
-      }
-      
       .section-title {
         font-size: 1.2rem;
+        padding-left: 25px;
+      }
+      
+      .section-title::before {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+      }
+      
+      .effective-date {
+        font-size: 1rem;
+        padding: 8px 20px;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- Navbar will be auto-inserted here -->
-<div id="navbar-container"></div>
+<!-- Modern Vibrant Navbar -->
+<nav class="navbar" aria-label="Main navigation">
+  <div class="company-name">A,B,C & Friendly Play</div>
+  
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Games</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="privacy-policy.html" class="nav-link active">Privacy Policy</a>
+  </div>
+</nav>
 
-<!-- Page content -->
+<!-- Privacy Policy Content -->
 <main class="privacy-container">
   <header class="privacy-header">
     <h1 class="privacy-title">Privacy Policy</h1>
@@ -168,14 +395,17 @@
   
   <div class="privacy-content">
     <section class="policy-section">
-      <h2 class="section-title">1. Introduction</h2>
+      <h2 class="section-title">Introduction</h2>
       <div class="section-content">
-        <p>Welcome to A,B,C games! Your privacy is important to us.This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
+        <p>Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
+        <div class="highlight">
+          <p>We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+        </div>
       </div>
     </section>
     
     <section class="policy-section">
-      <h2 class="section-title">2. Information We Collect</h2>
+      <h2 class="section-title">Information We Collect</h2>
       <div class="section-content">
         <p>We may collect the following types of information:</p>
         <ul>
@@ -188,89 +418,91 @@
     </section>
     
     <section class="policy-section">
-      <h2 class="section-title">3. How We Use Your Information</h2>
+      <h2 class="section-title">How We Use Your Information</h2>
       <div class="section-content">
-        <p>We may use the information we collect for various purposes, including:</p>
+        <p>We use the information we collect in various ways, including to:</p>
         <ul>
-          <li>To provide and maintain our game</li>
-          <li>To process in-game purchases</li>
-          <li>To personalize your gaming experience</li>
-          <li>To analyze usage and improve our game</li>
-          <li>To communicate with you, including sending updates and promotional materials</li>
-          <li>To display advertisements that are relevant to you</li>
+          <li>Provide, operate, and maintain our game</li>
+          <li>Improve, personalize, and expand our game</li>
+          <li>Understand and analyze how you use our game</li>
+          <li>Develop new products, services, features, and functionality</li>
+          <li>Send you marketing and promotional communications</li>
+          <li>Find and prevent fraud</li>
         </ul>
       </div>
     </section>
     
     <section class="policy-section">
-      <h2 class="section-title">4. Sharing Your Information</h2>
+      <h2 class="section-title">Information Sharing</h2>
       <div class="section-content">
-        <p>We may share your information in the following situations:</p>
+        <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
         <ul>
-          <li><strong>With Service Providers:</strong> We may share your information with third-party service providers who assist us in operating our game.</li>
-          <li><strong>For Advertising:</strong> We may share non-personal information with third-party advertisers.</li>
-          <li><strong>Legal Requirements:</strong> We may disclose your information if required to do so by law.</li>
+          <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
+          <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
         </ul>
       </div>
     </section>
     
     <section class="policy-section">
-      <h2 class="section-title">5. Cookies and Tracking Technologies</h2>
+      <h2 class="section-title">Security of Your Information</h2>
       <div class="section-content">
-        <p>We use cookies and similar tracking technologies to monitor activity on our game and store certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our game.</p>
+        <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+        <div class="highlight">
+          <p>We implement industry-standard encryption technologies to protect your data both in transit and at rest. All sensitive information is stored using advanced encryption methods.</p>
+        </div>
       </div>
     </section>
     
     <section class="policy-section">
-      <h2 class="section-title">6. In-Game Purchases</h2>
+      <h2 class="section-title">Children's Privacy</h2>
       <div class="section-content">
-        <p>If you make in-game purchases, we collect payment information through our payment processors. We do not store your credit card information; it is managed by the payment processor in accordance with their privacy policy.</p>
+        <p>Our game is intended for users of all ages, but we take special care to protect the privacy of young children. We do not knowingly collect personal information from children under the age of 13 without parental consent.</p>
+        <p>If we learn we have collected or received personal information from a child under 13 without verification of parental consent, we will delete that information. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
       </div>
     </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">7. Children's Privacy</h2>
-      <div class="section-content">
-        <p>Our game is not primarily intended for children under the age of 13. We do not knowingly collect personal information from children under this age. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.</p>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">8. Your Rights</h2>
-      <div class="section-content"><p>Depending on your location, you may have the following rights regarding your personal information:</p>
-        <ul>
-          <li>The right to access the personal data we hold about you</li>
-          <li>The right to request correction of any inaccurate data</li>
-          <li>The right to request deletion of your personal data</li>
-          <li>The right to object to processing or request restriction of processing</li>
-        </ul>
-        <p>To exercise these rights, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">9. Changes to This Privacy Policy</h2>
-      <div class="section-content">
-        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top.</p>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">10. Contact Us</h2>
-      <div class="section-content">
-        <p>If you have any questions about this Privacy Policy, please contact us:</p>
-        <ul>
-          <li>Email: abchub.help@gmail.com</li>
-          <li>Address: Russia, Cherepovets, Pervomayskaya st. 50</li>
-        </ul>
-      </div>
-    </section>
-    
+  </div>
+  
+  <div class="privacy-footer">
+    <p>© 2025 A,B,C & Friendly Play. All rights reserved. | 
+      <a href="contact.html" class="contact-link">Contact Us</a> | 
+      <a href="terms.html" class="contact-link">Terms of Service</a>
+    </p>
   </div>
 </main>
 
-<!-- Load navbar script -->
-<script src="includes/navbar.js"></script>
+<script>
+  // Add active class to current nav item
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (currentPage === linkPage) {
+        link.classList.add('active');
+      }
+    });
+  });
+  
+  // Animate sections on scroll
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, observerOptions);
+  
+  document.querySelectorAll('.policy-section').forEach(section => {
+    observer.observe(section);
+  });
+</script>
     
 </body>
 </html>
