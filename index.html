@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Games</title>
+  <title>Our Games Grid</title>
   <style>
     :root {
       --primary-color: #1a1a1a;
@@ -17,8 +17,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: #f8f8f8;
       padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      margin: 0;
     }
 
     h1 {
@@ -27,26 +26,27 @@
       color: var(--primary-color);
     }
 
-    .games-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .game-card {
       background: var(--card-bg);
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       border: 1px solid var(--border-color);
       transition: transform 0.3s ease;
-      margin-bottom: 20px;
     }
 
     .game-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
     .game-content-wrapper {
@@ -60,10 +60,10 @@
     }
 
     .game-icon {
-      width: 100px;
-      height: 100px;
-      border-radius: 22px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       object-fit: contain;
     }
 
@@ -75,22 +75,21 @@
     }
 
     .game-title {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--primary-color);
-      letter-spacing: 0.5px;
     }
 
     .game-subtitle {
-      font-size: 16px;
+      font-size: 14px;
       color: var(--secondary-color);
       font-weight: 500;
     }
 
     .store-buttons {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       padding: 0 20px 20px 20px;
     }
 
@@ -99,9 +98,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s ease;
@@ -123,35 +122,24 @@
     }
 
     .store-icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
     }
 
     @media (max-width: 600px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      
       .game-content-wrapper {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        padding: 15px;
       }
       
       .store-buttons {
         flex-direction: column;
+        padding: 0 15px 15px 15px;
       }
-      
-      .store-btn {
-        width: 100%;
-      }
-    }
-
-    /* Template instructions */
-    .template-instructions {
-      background: #f0f0f0;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 40px;
-      font-family: monospace;
-      white-space: pre-wrap;
     }
   </style>
 </head>
@@ -159,8 +147,9 @@
 
 <h1>Our Games</h1>
 
-<div class="games-container">
-  <!-- Hello Governor Card -->
+<div class="games-grid">
+  <!-- Paste your 10 Hello Governor cards here -->
+  <!-- Card 1 -->
   <div class="game-card">
     <div class="game-content-wrapper">
       <div class="game-icon-container">
@@ -168,29 +157,7 @@
       </div>
       <div class="game-info">
         <h2 class="game-title">HELLO GOVERNOR!</h2>
-        <p class="game-subtitle">Arcade Idle</p>
-      </div>
-    </div>
-    <div class="store-buttons">
-      <a href="https://apps.apple.com/app/id6504637193" target="_blank" class="store-btn app-store-btn">
-        <img src="https://abchub-play.github.io/app-store.png" alt="App Store" class="store-icon">
-        App Store
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.hello.governor" target="_blank" class="store-btn play-store-btn">
-        <img src="https://abchub-play.github.io/google-play.png" alt="Google Play" class="store-icon">
-        Google Play
-      </a>
-    </div>
-  </div>
-  <!-- Other Card -->
-  <div class="game-card">
-    <div class="game-content-wrapper">
-      <div class="game-icon-container">
-        <img src="https://abchub-play.github.io/hello-governor-icon.png" alt="Hello Governor!" class="game-icon">
-      </div>
-      <div class="game-info">
-        <h2 class="game-title">HELLO GOVERNOR!</h2>
-        <p class="game-subtitle">Arcade Idle</p>
+        <p class="game-subtitle">Political Simulation Game</p>
       </div>
     </div>
     <div class="store-buttons">
@@ -205,40 +172,33 @@
     </div>
   </div>
 
+  <!-- Card 2 -->
+  <div class="game-card">
+    <div class="game-content-wrapper">
+      <div class="game-icon-container">
+        <img src="https://abchub-play.github.io/hello-governor-icon.png" alt="Hello Governor!" class="game-icon">
+      </div>
+      <div class="game-info">
+        <h2 class="game-title">HELLO GOVERNOR!</h2>
+        <p class="game-subtitle">Political Simulation Game</p>
+      </div>
+    </div>
+    <div class="store-buttons">
+      <a href="https://apps.apple.com/app/id6504637193" target="_blank" class="store-btn app-store-btn">
+        <img src="https://abchub-play.github.io/app-store.png" alt="App Store" class="store-icon">
+        App Store
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.hello.governor" target="_blank" class="store-btn play-store-btn">
+        <img src="https://abchub-play.github.io/google-play.png" alt="Google Play" class="store-icon">
+        Google Play
+      </a>
+    </div>
+  </div>
+
+  <!-- Cards 3-10 would follow the same pattern -->
+  <!-- Just copy and paste the card div above 8 more times -->
+  
 </div>
-
-
-<!-- <div class="template-instructions">
-<strong>HOW TO ADD NEW GAME CARDS:</strong>
-
-Copy and paste this template, then fill in your details:
-&lt;div class="game-card"&gt;
-  &lt;div class="game-header" style="background: linear-gradient(135deg, #FFA500, #FF4500);"&gt;
-    &lt;img src="YOUR_ICON_URL" alt="Game Name" class="game-icon"&gt;
-  &lt;/div&gt;
-  &lt;div class="game-content"&gt;
-    &lt;h2 class="game-title"&gt;GAME NAME&lt;/h2&gt;
-    &lt;p class="game-subtitle"&gt;Game Genre/Description&lt;/p&gt;
-    &lt;div class="store-buttons"&gt;
-      &lt;a href="APP_STORE_LINK" target="_blank" class="store-btn app-store-btn"&gt;
-        &lt;img src="https://abchub-play.github.io/app-store.png" alt="App Store" class="store-icon"&gt;
-        App Store
-      &lt;/a&gt;
-      &lt;a href="PLAY_STORE_LINK" target="_blank" class="store-btn play-store-btn"&gt;
-        &lt;img src="https://abchub-play.github.io/google-play.png" alt="Google Play" class="store-icon"&gt;
-        Google Play
-      &lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-Change these elements:
-1. gradient colors in game-header style
-2. game icon URL
-3. game title (UPPERCASE)
-4. game subtitle/description
-5. App Store and Play Store links
-</div> -->
 
   
   
