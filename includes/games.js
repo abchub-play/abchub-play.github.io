@@ -119,32 +119,20 @@ class GameCard {
 }
 
 // Initialize Games Grid
-document.addEventListener('DOMContentLoaded', () => {
+// At the bottom of games.js, replace the DOMContentLoaded event with:
+function initGames() {
   const container = document.getElementById('games-container');
   if (!container) {
-    console.error('Games container not found!');
+    console.error('Container not found');
     return;
   }
-
-  // Create IntersectionObserver for lazy loading animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  // Render each game with animation delay
-  games.forEach((game, index) => {
-    try {
-      const card = new GameCard(game).render();
-      card.style.setProperty('--delay', `${index * 0.05}s`);
-      container.appendChild(card);
-      observer.observe(card);
-    } catch (error) {
-      console.error('Error rendering game card:', error);
-    }
+  
+  games.forEach(game => {
+    container.innerHTML += new GameCard(game).render().outerHTML;
   });
-});
+}
+
+// Either use DOMContentLoaded or load at bottom of body
+document.addEventListener('DOMContentLoaded', initGames);
+// OR if script is at bottom of body, just call:
+// initGames();
