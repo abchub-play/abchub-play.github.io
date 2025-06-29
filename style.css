@@ -1,0 +1,7 @@
+#panelpic1 {
+    content: url("https://picsum.photos/id/1/200/300");
+    float: left;
+    width: 250px;
+    height: 150px;
+    display: block;
+}
