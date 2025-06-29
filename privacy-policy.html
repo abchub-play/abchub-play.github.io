@@ -4,7 +4,28 @@
     <title>Privacy Policy</title>
 </head>
 <body>
-      <a href="/">Back to Home</a>
+<!-- Navbar will be inserted here -->
+    <div id="navbar-container"></div>
+
+    <!-- Your page content here -->
+    <main>
+        <h1>Welcome to our website</h1>
+    </main>
+
+    <script>
+        // Load navbar
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+                
+                // Make sure links load in the main window
+                document.querySelectorAll('#navbar-container a').forEach(link => {
+                    link.target = '_top';
+                });
+            });
+    </script>
+    
 <h1>Privacy Policy</h1>
 <p>Privacy Policy for Dmitriy Sychev and A,B,C games and Friendly Play</p>
 
