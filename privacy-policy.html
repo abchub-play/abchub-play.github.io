@@ -4,34 +4,14 @@
     <title>Privacy Policy</title>
 </head>
 <body>
-    <!-- On privacy-policy.html -->
-<a href="index.html" class="nav-link">Games</a>
-<a href="privacy-policy.html" class="nav-link" aria-current="page">Privacy Policy</a>
-  
-<!-- Navbar will be inserted here -->
-    <div id="navbar-container"></div>
 
-    <!-- Your page content here -->
-    <main>
-        <h1>Welcome to our website</h1>
-    </main>
+<!-- Navbar will be auto-inserted here -->
+<div id="navbar-container"></div>
 
-    <script>
-        // Load navbar
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-                
-                // Make sure links load in the main window
-                document.querySelectorAll('#navbar-container a').forEach(link => {
-                    link.target = '_top';
-                });
-            });
-    </script>
-    
-<h1>Privacy Policy</h1>
-<p>Privacy Policy for Dmitriy Sychev and A,B,C games and Friendly Play</p>
+<!-- Your page content here -->
+<main>
+    <h1>Privacy Policy</h1>
+    <p>Privacy Policy for Dmitriy Sychev and A,B,C games and Friendly Play</p>
 
 <p>Effective Date: 2025.11.11</p>
 
@@ -118,5 +98,7 @@ If you have any questions about this Privacy Policy, please contact us:
 
 Thank you for playing A,B,C games!
 </p>
+</main>
+
 </body>
 </html>
