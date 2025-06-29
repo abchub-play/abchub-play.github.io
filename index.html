@@ -160,6 +160,53 @@
       box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
     }
     
+    /* Loading State */
+    .loader-container {
+      display: flex;
+      justify-content: center;
+      padding: 60px;
+    }
+    
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-bottom-color: #ff6b6b;
+      border-radius: 50%;
+      display: inline-block;
+      animation: rotation 1s linear infinite;
+    }
+    
+    .error-message {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255, 107, 107, 0.1);
+      border-radius: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+    
+    .error-message i {
+      font-size: 3rem;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+    
+    .retry-button {
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    
     /* Games Section */
     .games-container {
       max-width: 1300px;
@@ -424,6 +471,11 @@
       100% { background-position: 200% 50%; }
     }
     
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
     @keyframes float {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-15px); }
@@ -433,10 +485,6 @@
     .floating {
       animation: float 5s ease-in-out infinite;
     }
-    
-    .game-card:nth-child(1) { animation-delay: 0.1s; }
-    .game-card:nth-child(2) { animation-delay: 0.2s; }
-    .game-card:nth-child(3) { animation-delay: 0.3s; }
     
     /* Responsive adjustments */
     @media (max-width: 900px) {
@@ -529,88 +577,10 @@
 <section class="games-container">
   <h2 class="section-title">Our Featured Games</h2>
   
-  <div class="games-grid">
-    <!-- Game Card 1 -->
-    <div class="game-card floating">
-      <div class="game-badge">NEW</div>
-      <div class="game-content-wrapper">
-        <div class="game-icon-container">
-          <img src="https://abchub-play.github.io/icons/game1.png" alt="ABC Adventure" class="game-icon" loading="lazy">
-        </div>
-        <div class="game-info">
-          <h2 class="game-title">ABC Adventure</h2>
-          <p class="game-subtitle">Learn letters through exciting quests</p>
-          <div class="game-rating">
-            <div class="stars">★★★★☆</div>
-            <span class="rating-text">4.2/5</span>
-          </div>
-        </div>
-      </div>
-      <div class="store-buttons">
-        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-          <span>App Store</span>
-        </a>
-        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-          <span>Google Play</span>
-        </a>
-      </div>
-    </div>
-    
-    <!-- Game Card 2 -->
-    <div class="game-card floating">
-      <div class="game-content-wrapper">
-        <div class="game-icon-container">
-          <img src="https://abchub-play.github.io/icons/game2.png" alt="Math Maze" class="game-icon" loading="lazy">
-        </div>
-        <div class="game-info">
-          <h2 class="game-title">Math Maze</h2>
-          <p class="game-subtitle">Solve puzzles to escape the number labyrinth</p>
-          <div class="game-rating">
-            <div class="stars">★★★★☆</div>
-            <span class="rating-text">4.5/5</span>
-          </div>
-        </div>
-      </div>
-      <div class="store-buttons">
-        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-          <span>App Store</span>
-        </a>
-        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-          <span>Google Play</span>
-        </a>
-      </div>
-    </div>
-    
-    <!-- Game Card 3 -->
-    <div class="game-card floating">
-      <div class="game-badge">HOT</div>
-      <div class="game-content-wrapper">
-        <div class="game-icon-container">
-          <img src="https://abchub-play.github.io/icons/game3.png" alt="Word World" class="game-icon" loading="lazy">
-        </div>
-        <div class="game-info">
-          <h2 class="game-title">Word World</h2>
-          <p class="game-subtitle">Build vocabulary with interactive challenges</p>
-          <div class="game-rating">
-            <div class="stars">★★★★★</div>
-            <span class="rating-text">4.8/5</span>
-          </div>
-        </div>
-      </div>
-      <div class="store-buttons">
-        <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-          <span>App Store</span>
-        </a>
-        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-          <span>Google Play</span>
-        </a>
-      </div>
+  <div class="games-grid" id="gamesGrid">
+    <!-- Loading state -->
+    <div class="loader-container">
+      <span class="loader"></span>
     </div>
   </div>
 </section>
@@ -658,6 +628,9 @@
 </footer>
 
 <script>
+  // JSON data URL (replace with your GitHub Pages URL)
+  const GAMES_JSON_URL = 'https://abchub-play.github.io/games.json';
+  
   // Navbar scroll effect
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
@@ -679,21 +652,116 @@
         link.classList.add('active');
       }
     });
+    
+    // Load games after DOM is ready
+    loadGames();
   });
   
-  // Floating animation for game cards
-  document.querySelectorAll('.floating').forEach((card, index) => {
-    card.style.animationDelay = `${index * 0.2}s`;
-  });
+  // Function to load games from JSON
+  async function loadGames() {
+    const gamesGrid = document.getElementById('gamesGrid');
+    
+    try {
+      // Show loading state
+      gamesGrid.innerHTML = `
+        <div class="loader-container">
+          <span class="loader"></span>
+          <p style="margin-top: 20px; color: #b8c1ec;">Loading our amazing games...</p>
+        </div>
+      `;
+      
+      // Fetch games data
+      const response = await fetch(GAMES_JSON_URL);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const games = await response.json();
+      
+      // Clear loading state
+      gamesGrid.innerHTML = '';
+      
+      // Generate game cards
+      games.forEach((game, index) => {
+        const gameCard = createGameCard(game, index);
+        gamesGrid.appendChild(gameCard);
+      });
+      
+      // Add floating animation to cards after they're created
+      document.querySelectorAll('.game-card').forEach((card, index) => {
+        card.classList.add('floating');
+        card.style.animationDelay = `${index * 0.2}s`;
+      });
+      
+    } catch (error) {
+      console.error('Error loading games:', error);
+      gamesGrid.innerHTML = `
+        <div class="error-message">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h3>Couldn't Load Games</h3>
+          <p>We're having trouble loading our games at the moment. Please check your internet connection and try again.</p>
+          <p><small>Error: ${error.message}</small></p>
+          <button class="retry-button" onclick="loadGames()">
+            <i class="fas fa-redo"></i> Try Again
+          </button>
+        </div>
+      `;
+    }
+  }
+  
+  // Function to create game card HTML
+  function createGameCard(game, index) {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    
+    // Generate star rating
+    const fullStars = '★'.repeat(Math.floor(game.rating));
+    const halfStar = game.rating % 1 >= 0.5 ? '½' : '';
+    const emptyStars = '☆'.repeat(5 - Math.ceil(game.rating));
+    const stars = fullStars + halfStar + emptyStars;
+    
+    // Create card HTML
+    card.innerHTML = `
+      ${game.badge ? `<div class="game-badge">${game.badge}</div>` : ''}
+      <div class="game-content-wrapper">
+        <div class="game-icon-container">
+          <img src="${game.icon}" alt="${game.title}" class="game-icon" loading="lazy">
+        </div>
+        <div class="game-info">
+          <h2 class="game-title">${game.title}</h2>
+          <p class="game-subtitle">${game.subtitle}</p>
+          <div class="game-rating">
+            <div class="stars">${stars}</div>
+            <span class="rating-text">${game.rating}/5</span>
+          </div>
+        </div>
+      </div>
+      <div class="store-buttons">
+        <a href="${game.appStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
+          <span>App Store</span>
+        </a>
+        <a href="${game.playStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
+          <span>Google Play</span>
+        </a>
+      </div>
+    `;
+    
+    return card;
+  }
   
   // CTA button animation
   const ctaButton = document.querySelector('.cta-button');
-  ctaButton.addEventListener('mouseover', () => {
-    ctaButton.style.animation = 'none';
-    setTimeout(() => {
-      ctaButton.style.animation = 'float 1s ease-in-out';
-    }, 10);
-  });
+  if (ctaButton) {
+    ctaButton.addEventListener('mouseover', () => {
+      ctaButton.style.animation = 'none';
+      setTimeout(() => {
+        ctaButton.style.animation = 'float 1s ease-in-out';
+      }, 10);
+    });
+  }
 </script>
     
 </body>
