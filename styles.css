@@ -52,6 +52,24 @@ body {
       color: var(--accent-color);
     }
 
+.nav-link[aria-current="page"] {
+    color: var(--accent-color); /* Or any highlight color you want */
+    font-weight: bold;
+    /* Add any other styles for the active link */
+    position: relative;
+}
+
+/* Optional: Add an underline indicator */
+.nav-link[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
     /* Our Games Section */
     .section-header {
       text-align: center;
