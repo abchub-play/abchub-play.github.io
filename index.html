@@ -38,7 +38,7 @@
       border-radius: 20px;
       overflow: hidden;
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       border: 1px solid var(--border-color);
       transition: transform 0.3s ease;
@@ -49,29 +49,33 @@
       transform: translateY(-5px);
     }
 
-    .game-header {
-      height: 180px;
-      background: linear-gradient(135deg, #4a6bff, #6a4bff);
+    .game-content-wrapper {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .game-icon-container {
+      flex-shrink: 0;
     }
 
     .game-icon {
       width: 100px;
       height: 100px;
       border-radius: 22px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       object-fit: contain;
     }
 
-    .game-content {
-      padding: 24px;
-      text-align: center;
+    .game-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .game-title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       margin-bottom: 8px;
       color: var(--primary-color);
@@ -81,13 +85,13 @@
     .game-subtitle {
       font-size: 16px;
       color: var(--secondary-color);
-      margin-bottom: 24px;
       font-weight: 500;
     }
 
     .store-buttons {
       display: flex;
       gap: 12px;
+      padding: 0 20px 20px 20px;
     }
 
     .store-btn {
@@ -124,7 +128,13 @@
       margin-right: 8px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
+      .game-content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
       .store-buttons {
         flex-direction: column;
       }
@@ -152,22 +162,24 @@
 <div class="games-container">
   <!-- Hello Governor Card -->
   <div class="game-card">
-    <div class="game-header">
-      <img src="https://abchub-play.github.io/hello-governor-icon.png" alt="Hello Governor!" class="game-icon">
-    </div>
-    <div class="game-content">
-      <h2 class="game-title">HELLO GOVERNOR!</h2>
-      <p class="game-subtitle">Arcade Idle</p>
-      <div class="store-buttons">
-        <a href="https://apps.apple.com/app/id6504637193" target="_blank" class="store-btn app-store-btn">
-          <img src="https://abchub-play.github.io/app-store.png" alt="App Store" class="store-icon">
-          App Store
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.hello.governor" target="_blank" class="store-btn play-store-btn">
-          <img src="https://abchub-play.github.io/google-play.png" alt="Google Play" class="store-icon">
-          Google Play
-        </a>
+    <div class="game-content-wrapper">
+      <div class="game-icon-container">
+        <img src="https://abchub-play.github.io/hello-governor-icon.png" alt="Hello Governor!" class="game-icon">
       </div>
+      <div class="game-info">
+        <h2 class="game-title">HELLO GOVERNOR!</h2>
+        <p class="game-subtitle">Political Simulation Game</p>
+      </div>
+    </div>
+    <div class="store-buttons">
+      <a href="https://apps.apple.com/app/id6504637193" target="_blank" class="store-btn app-store-btn">
+        <img src="https://abchub-play.github.io/app-store.png" alt="App Store" class="store-icon">
+        App Store
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.hello.governor" target="_blank" class="store-btn play-store-btn">
+        <img src="https://abchub-play.github.io/google-play.png" alt="Google Play" class="store-icon">
+        Google Play
+      </a>
     </div>
   </div>
 
