@@ -4,34 +4,412 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Games - ABC & Friendly Play</title>
-  <link rel="stylesheet" href="https://abchub-play.github.io/css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a56d4;
+      --secondary: #ff6b6b;
+      --dark: #2b2d42;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
+      --border-radius: 16px;
+      --shadow: 0 10px 20px rgba(0,0,0,0.05);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+    
+    /* Header Styles */
+    .games-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .games-heading {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    
+    .games-description {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Games Grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Game Card */
+    .game-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .game-content-wrapper {
+      padding: 25px;
+      flex-grow: 1;
+    }
+    
+    .game-icon-container {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin-bottom: 20px;
+    }
+    
+    .game-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 3px solid var(--light-gray);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .game-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--secondary);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      z-index: 2;
+      box-shadow: 0 4px 8px rgba(255,107,107,0.3);
+    }
+    
+    .game-info {
+      margin-top: 10px;
+    }
+    
+    .game-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+    
+    .game-subtitle {
+      color: var(--gray);
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+    
+    .game-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+      color: #ffc107;
+    }
+    
+    .rating-text {
+      font-size: 0.95rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    
+    /* Store Buttons */
+    .store-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 25px 25px;
+      border-top: 1px solid var(--light-gray);
+      background: rgba(248, 249, 250, 0.5);
+    }
+    
+    .store-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 15px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      text-decoration: none;
+border: 2px solid transparent;
+    }
+    
+    .app-store-btn {
+      background: var(--dark);
+      color: white;
+    }
+    
+    .app-store-btn:hover {
+      background: #1a1c2e;
+      transform: translateY(-2px);
+    }
+    
+    .play-store-btn {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .play-store-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .store-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* Navbar Styles */
+    .navbar {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--primary);
+    }
+    
+    .logo-icon {
+      color: var(--secondary);
+      font-size: 2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .active {
+      color: var(--primary);
+    }
+    
+    .active::after {
+      width: 100%;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+      
+      .games-heading {
+        font-size: 2.5rem;
+      }
+      
+      .games-description {
+        font-size: 1.1rem;
+      }
+      
+      .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    
+    .social-link {
+      color: var(--gray);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+  </style>
 </head>
 <body>
 
-<!-- Navbar will be auto-inserted here -->
-<div id="navbar-container"></div>
+<!-- Navbar -->
+<nav class="navbar">
+  <a href="#" class="logo">
+    <i class="fas fa-gamepad logo-icon"></i>
+    <span>ABC & Friendly Play</span>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="nav-link">Home</a>
+    <a href="#" class="nav-link active">Games</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">Contact</a>
+  </div>
+</nav>
 
 <!-- Page content -->
 <main class="games-container">
-    <div class="games-header">
-      <h1 class="games-heading">Our Games</h1>
-      <p class="games-description">
-        Discover our collection of fun and engaging games for all ages
-      </p>
-    </div>
-    
-    <div class="games-grid">
-      <!-- Game cards will be loaded dynamically -->
-      <div class="loading-indicator">Loading games...</div>
-    </div>
+  <div class="games-header">
+    <h1 class="games-heading">Our Games</h1>
+    <p class="games-description">
+      Discover our collection of fun and engaging educational games for all ages
+    </p>
+  </div>
+  
+  <div class="games-grid" id="games-container">
+    <!-- Game cards will be inserted here by JavaScript -->
+  </div>
 </main>
 
-<!-- Load navbar script -->
-<script src="includes/navbar.js"></script>
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2023 ABC & Friendly Play. All rights reserved.</p>
+  <div class="social-links">
+    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+  </div>
+</footer>
 
-<!-- Game rendering script -->
 <script>
+  // Game data - embedded directly for synchronous loading
+  const games = [
+    {
+      id: 1,
+      title: "ABC Adventure",
+subtitle: "Learn letters through exciting quests",
+      icon: "https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400&q=80",
+      rating: 4.2,
+      badge: "NEW",
+      appStoreLink: "https://apps.apple.com",
+      playStoreLink: "https://play.google.com"
+    },
+    {
+      id: 2,
+      title: "Math Maze",
+      subtitle: "Solve puzzles to escape the number labyrinth",
+      icon: "https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400&q=80",
+      rating: 4.5,
+      badge: null,
+      appStoreLink: "https://apps.apple.com",
+      playStoreLink: "https://play.google.com"
+    },
+    {
+      id: 3,
+      title: "Word World",
+      subtitle: "Build vocabulary with interactive challenges",
+      icon: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400&q=80",
+      rating: 4.8,
+      badge: "HOT",
+      appStoreLink: "https://apps.apple.com",
+      playStoreLink: "https://play.google.com"
+    },
+    {
+      id: 4,
+      title: "Science Explorers",
+      subtitle: "Discover the wonders of science",
+      icon: "https://images.unsplash.com/photo-1575503802870-45de6a6217c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400&q=80",
+      rating: 4.6,
+      badge: "UPDATE",
+      appStoreLink: "https://apps.apple.com",
+      playStoreLink: "https://play.google.com"
+    }
+  ];
+
   // Function to generate star rating HTML
   function generateRatingStars(rating) {
     const fullStars = Math.floor(rating);
@@ -41,13 +419,19 @@
     let starsHTML = '';
     
     // Add full stars
-    starsHTML += '★'.repeat(fullStars);
+    for (let i = 0; i < fullStars; i++) {
+      starsHTML += '<i class="fas fa-star"></i>';
+    }
     
     // Add half star if needed
-    if (hasHalfStar) starsHTML += '½';
+    if (hasHalfStar) {
+      starsHTML += '<i class="fas fa-star-half-alt"></i>';
+    }
     
     // Add empty stars
-    starsHTML += '☆'.repeat(emptyStars);
+    for (let i = 0; i < emptyStars; i++) {
+      starsHTML += '<i class="far fa-star"></i>';
+    }
     
     return starsHTML;
   }
@@ -72,11 +456,11 @@
         </div>
         <div class="store-buttons">
           <a href="${game.appStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
-            <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
+            <i class="fab fa-apple store-icon"></i>
             <span>App Store</span>
           </a>
           <a href="${game.playStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
-            <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
+            <i class="fab fa-google-play store-icon"></i>
             <span>Google Play</span>
           </a>
         </div>
@@ -84,39 +468,12 @@
     `;
   }
 
-  // Load game data and render cards
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await fetch('games.json');
-      if (!response.ok) {
-        throw new Error('Failed to load games data');
-      }
-      
-      const games = await response.json();
-      const gamesGrid = document.querySelector('.games-grid');
-      
-      if (games.length === 0) {
-        gamesGrid.innerHTML = '<p class="no-games">No games available at the moment. Please check back later!</p>';
-        return;
-      }
-      
-      // Clear loading indicator
-      gamesGrid.innerHTML = '';
-      
-      // Create and append game cards
-      games.forEach(game => {
-        gamesGrid.innerHTML += createGameCard(game);
-      });
-      
-    } catch (error) {
-      console.error('Error loading games:', error);
-      document.querySelector('.games-grid').innerHTML = `
-        <div class="error-message">
-          <p>⚠️ Could not load games. Please try again later.</p>
-          <button onclick="location.reload()">Retry</button>
-        </div>
-      `;
-    }
+  // Render all game cards when page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const gamesContainer = document.getElementById('games-container');
+    games.forEach(game => {
+      gamesContainer.innerHTML += createGameCard(game);
+    });
   });
 </script>
     
