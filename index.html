@@ -677,7 +677,7 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      const games = await response.json();
+      const games = await response.json().games;
       
       // Clear loading state
       gamesGrid.innerHTML = '';
