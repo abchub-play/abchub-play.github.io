@@ -1,5 +1,5 @@
-[
-    {
+{
+    "games": [{
         "title": "HELLO GOVERNOR!",
         "subtitle": "Arcade Idle",
         "icon": "https://abchub-play.github.io/icons/games/hello-governor-icon.png",
@@ -38,5 +38,5 @@
         "badge": "New",
         "appStoreUrl": "https://apps.apple.com/app/id6517361887",
         "playStoreUrl": "https://apps.apple.com/app/id6517361887"
-    }
-]
+    }]
+}
