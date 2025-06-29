@@ -31,6 +31,14 @@ const games = [
       alt: "2D Brawl",
       appStoreUrl: "https://apps.apple.com/app/id6517361887",
       playStoreUrl: "https://apps.apple.com/app/id6517361887" // Note: This appears to be the same as App Store URL
+    },
+    {
+      title: "Daily Quest",
+      subtitle: "Learning",
+      icon: "https://abchub-play.github.io/icons/games/daily-quest-icon.png",
+      alt: "2D Brawl",
+      appStoreUrl: "https://apps.apple.com/app/id6738058668",
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.daily.quest" // Note: This appears to be the same as App Store URL
     }
     // Add more games here as needed
   ];
