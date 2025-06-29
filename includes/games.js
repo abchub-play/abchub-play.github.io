@@ -1,4 +1,3 @@
-
 // Game data array
 const games = [
   {
@@ -24,28 +23,6 @@ const games = [
   },
   {
     id: 3,
-    icon: 'https://abchub-play.github.io/icons/game3.png',
-    alt: 'Word World',
-    badge: 'HOT',
-    title: 'Word World',
-    subtitle: 'Build vocabulary with interactive challenges',
-    rating: 4.8,
-    appStoreUrl: 'https://apps.apple.com',
-    playStoreUrl: 'https://play.google.com'
-  },
-  {
-    id: 4,
-    icon: 'https://abchub-play.github.io/icons/game3.png',
-    alt: 'Word World',
-    badge: 'HOT',
-    title: 'Word World',
-    subtitle: 'Build vocabulary with interactive challenges',
-    rating: 4.8,
-    appStoreUrl: 'https://apps.apple.com',
-    playStoreUrl: 'https://play.google.com'
-  },
-  {
-    id: 5,
     icon: 'https://abchub-play.github.io/icons/game3.png',
     alt: 'Word World',
     badge: 'HOT',
