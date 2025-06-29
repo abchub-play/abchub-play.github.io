@@ -53,14 +53,8 @@ const games = [
     // Add more games here as needed
   ];
 
-// Game Data Structure Example
-// Make sure your games array looks something like this:
-/*
-const games = [
 
-  // ... other games
-];
-*/
+}
 
 class GameCard {
   constructor(game) {
@@ -127,7 +121,10 @@ class GameCard {
 // Initialize Games Grid
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('games-container');
-  if (!container) return;
+  if (!container) {
+    console.error('Games container not found!');
+    return;
+  }
 
   // Create IntersectionObserver for lazy loading animations
   const observer = new IntersectionObserver((entries) => {
@@ -141,9 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render each game with animation delay
   games.forEach((game, index) => {
-    const card = new GameCard(game).render();
-    card.style.setProperty('--delay', `${index * 0.05}s`);
-    container.appendChild(card);
-    observer.observe(card);
+    try {
+      const card = new GameCard(game).render();
+      card.style.setProperty('--delay', `${index * 0.05}s`);
+      container.appendChild(card);
+      observer.observe(card);
+    } catch (error) {
+      console.error('Error rendering game card:', error);
+    }
   });
 });
