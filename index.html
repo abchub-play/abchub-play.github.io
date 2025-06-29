@@ -10,8 +10,27 @@
 </head>
 <body>
 
-<!-- Include navbar -->
-<object type="text/html" data="navbar.html" style="width: 100%;"></object>
+<!-- Navbar will be inserted here -->
+    <div id="navbar-container"></div>
+
+    <!-- Your page content here -->
+    <main>
+        <h1>Welcome to our website</h1>
+    </main>
+
+    <script>
+        // Load navbar
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+                
+                // Make sure links load in the main window
+                document.querySelectorAll('#navbar-container a').forEach(link => {
+                    link.target = '_top';
+                });
+            });
+    </script>
   
 <h1>Our Games</h1>
 
