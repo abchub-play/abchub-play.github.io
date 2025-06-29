@@ -93,19 +93,13 @@
       color: var(--secondary-color);
     }
 
-    /* Horizontal Scrolling Games */
-    .games-scroll-container {
-      background: var(--games-bg);
-      padding: 40px 0;
-    }
-
-    .games-scroll {
-      display: flex;
-      overflow-x: auto;
-      gap: 30px;
-      padding: 0 40px 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .game-card {
@@ -119,31 +113,53 @@
       flex-direction: column;
     }
 
+.game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .game-content-wrapper {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .game-icon-container {
+      flex-shrink: 0;
+    }
+
     .game-icon {
-      width: 100%;
-      aspect-ratio: 1;
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       object-fit: contain;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-      margin-bottom: 15px;
+    }
+
+    .game-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .game-title {
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      color: var(--primary-color);
     }
 
-    .game-genre {
+    .game-subtitle {
       font-size: 14px;
       color: var(--secondary-color);
-      margin-bottom: 15px;
+      font-weight: 500;
     }
 
     .store-buttons {
       display: flex;
       gap: 10px;
-      margin-top: auto;
+      padding: 0 20px 20px 20px;
     }
 
     .store-btn {
@@ -151,53 +167,48 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 10px;
+      padding: 10px;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       text-decoration: none;
-      color: white;
+      transition: all 0.2s ease;
     }
 
     .app-store-btn {
       background: #000;
+      color: white;
     }
 
     .play-store-btn {
       background: #4285F4;
-    }
-
-    /* Footer CTA */
-    .cta-section {
-      text-align: center;
-      padding: 60px 20px;
-      background: var(--accent-color);
       color: white;
     }
 
-    .cta-title {
-      font-size: 28px;
-      margin-bottom: 20px;
+    .store-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
     }
 
-    .cta-button {
-      display: inline-block;
-      padding: 12px 30px;
-      background: white;
-      color: var(--accent-color);
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.2s;
+    .store-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
     }
 
-    .cta-button:hover {
-      transform: scale(1.05);
-    }
-
-    /* Hide scrollbar but keep functionality */
-    .games-scroll::-webkit-scrollbar {
-      display: none;
+    @media (max-width: 600px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .game-content-wrapper {
+        padding: 15px;
+      }
+      
+      .store-buttons {
+        flex-direction: column;
+        padding: 0 15px 15px 15px;
+      }
     }
   </style>
 </head>
@@ -205,12 +216,11 @@
 
 <!-- Navigation Bar -->
 <nav class="navbar">
-  <div class="company-name">YOURCOMPANY</div>
+  <div class="company-name">A,B,C & Friendly Play</div>
   <div class="nav-links">
     <a href="#games" class="nav-link">Games</a>
     <a href="#contact" class="nav-link">Contact</a>
     <a href="#privacy" class="nav-link">Privacy Policy</a>
-    <a href="#submit" class="nav-link">Submit Game</a>
   </div>
 </nav>
 
