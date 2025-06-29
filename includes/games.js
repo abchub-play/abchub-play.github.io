@@ -5,6 +5,8 @@ const games = [
       subtitle: "Arcade Idle",
       icon: "https://abchub-play.github.io/icons/games/hello-governor-icon.png",
       alt: "Hello Governor!",
+      rating: 5,
+      badge: "New", // optional
       appStoreUrl: "https://apps.apple.com/app/id6504637193",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.hello.governor"
     },
@@ -13,6 +15,8 @@ const games = [
       subtitle: "Real Time Strategy",
       icon: "https://abchub-play.github.io/icons/games/pocket-clash-icon.png",
       alt: "Pocket clash",
+      rating: 5,
+      badge: "New", // optional
       appStoreUrl: "https://apps.apple.com/app/id6478879887",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.clash.pocket3d"
     },
@@ -21,6 +25,8 @@ const games = [
       subtitle: "Action Puzzle",
       icon: "https://abchub-play.github.io/icons/games/alien-grounds-icon.png",
       alt: "Alien Grounds",
+      rating: 5,
+      badge: "New", // optional
       appStoreUrl: "https://apps.apple.com/app/id6741333498",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.grounds.alien"
     },
@@ -29,6 +35,8 @@ const games = [
       subtitle: "Fighting, Multiplayer",
       icon: "https://abchub-play.github.io/icons/games/2d-brawl-icon.png",
       alt: "2D Brawl",
+      rating: 5,
+      badge: "New", // optional
       appStoreUrl: "https://apps.apple.com/app/id6517361887",
       playStoreUrl: "https://apps.apple.com/app/id6517361887" // Note: This appears to be the same as App Store URL
     },
@@ -37,20 +45,29 @@ const games = [
       subtitle: "Learning",
       icon: "https://abchub-play.github.io/icons/games/daily-quest-icon.png",
       alt: "2D Brawl",
+      rating: 5,
+      badge: "New", // optional
       appStoreUrl: "https://apps.apple.com/app/id6738058668",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.daily.quest" // Note: This appears to be the same as App Store URL
     }
     // Add more games here as needed
   ];
 
-// Modern Game Card Component with enhanced features
+// Game Data Structure Example
+// Make sure your games array looks something like this:
+/*
+const games = [
+
+  // ... other games
+];
+*/
+
 class GameCard {
   constructor(game) {
     this.game = game;
     this.card = document.createElement('div');
     this.card.className = 'game-card';
     this.card.innerHTML = this.#template();
-    this.#addEventListeners();
   }
 
   #template() {
@@ -63,10 +80,12 @@ class GameCard {
         <div class="game-info">
           <h2 class="game-title">${this.game.title}</h2>
           <p class="game-subtitle">${this.game.subtitle}</p>
+          ${this.game.rating ? `
           <div class="game-rating">
             ${this.#generateStars(this.game.rating)}
             <span class="rating-text">${this.game.rating}/5</span>
           </div>
+          ` : ''}
         </div>
       </div>
       <div class="store-buttons">
@@ -100,26 +119,17 @@ class GameCard {
     return stars;
   }
 
-  #addEventListeners() {
-    this.card.addEventListener('click', (e) => {
-      if (!e.target.closest('.store-btn')) {
-        // Handle card click (could expand for more details)
-        console.log(`Selected game: ${this.game.title}`);
-      }
-    });
-  }
-
   render() {
     return this.card;
   }
 }
 
-// Modern Games Grid Initialization
+// Initialize Games Grid
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('games-container');
   if (!container) return;
 
-  // Create IntersectionObserver for lazy loading
+  // Create IntersectionObserver for lazy loading animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -135,16 +145,5 @@ document.addEventListener('DOMContentLoaded', () => {
     card.style.setProperty('--delay', `${index * 0.05}s`);
     container.appendChild(card);
     observer.observe(card);
-  });
-
-  // Add analytics tracking for store buttons
-  container.addEventListener('click', (e) => {
-    const storeBtn = e.target.closest('.store-btn');
-    if (storeBtn) {
-      const storeType = storeBtn.classList.contains('app-store-btn') ? 'App Store' : 'Google Play';
-      const gameTitle = storeBtn.closest('.game-card').querySelector('.game-title').textContent;
-      console.log(`Track: ${gameTitle} - ${storeType} click`);
-      // Replace with actual analytics tracking
-    }
   });
 });
