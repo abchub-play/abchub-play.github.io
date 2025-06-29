@@ -1,5 +1,5 @@
-// Game data array
-const games = [
+// Game data - this can be moved to a separate JSON file later if needed
+const gamesData = [
   {
     id: 1,
     icon: 'https://abchub-play.github.io/icons/game1.png',
@@ -34,29 +34,35 @@ const games = [
   }
 ];
 
-// Generate star rating HTML
-function generateStars(rating) {
+// Helper function to generate star rating display
+function getStarRating(rating) {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 >= 0.5;
-  let stars = '';
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
   
-  for (let i = 1; i <= 5; i++) {
-    if (i <= fullStars) {
-      stars += '★';
-    } else if (i === fullStars + 1 && hasHalfStar) {
-      stars += '½';
-    } else {
-      stars += '☆';
-    }
-  }
-  
-  return stars;
+  return '★'.repeat(fullStars) + 
+         (hasHalfStar ? '½' : '') + 
+         '☆'.repeat(emptyStars);
 }
 
-// Generate HTML for a single game card
-function generateGameCard(game) {
+// Generates HTML for store buttons
+function getStoreButtons(appStoreUrl, playStoreUrl) {
   return `
-    <div class="game-card" data-id="${game.id}">
+    <a href="${appStoreUrl}" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
+      <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
+      <span>App Store</span>
+    </a>
+    <a href="${playStoreUrl}" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
+      <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
+      <span>Google Play</span>
+    </a>
+  `;
+}
+
+// Generates HTML for a single game card
+function createGameCard(game) {
+  return `
+    <div class="game-card" data-game-id="${game.id}">
       <div class="game-content-wrapper">
         <div class="game-icon-container">
           <img src="${game.icon}" alt="${game.alt}" class="game-icon" loading="lazy">
@@ -66,34 +72,25 @@ function generateGameCard(game) {
           <h2 class="game-title">${game.title}</h2>
           <p class="game-subtitle">${game.subtitle}</p>
           <div class="game-rating">
-            ${generateStars(game.rating)}
+            ${getStarRating(game.rating)}
             <span class="rating-text">${game.rating}/5</span>
           </div>
         </div>
       </div>
       <div class="store-buttons">
-        <a href="${game.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="store-btn app-store-btn">
-          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-          <span>App Store</span>
-        </a>
-        <a href="${game.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="store-btn play-store-btn">
-          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-          <span>Google Play</span>
-        </a>
+        ${getStoreButtons(game.appStoreUrl, game.playStoreUrl)}
       </div>
     </div>
   `;
 }
 
-// Render all game cards
-function renderGameCards() {
-  const gamesGrid = document.querySelector('.games-grid');
-  if (gamesGrid) {
-    gamesGrid.innerHTML = games.map(game => generateGameCard(game)).join('');
+// Renders all game cards to the page
+function renderGames() {
+  const gamesContainer = document.querySelector('.games-grid');
+  if (gamesContainer) {
+    gamesContainer.innerHTML = gamesData.map(game => createGameCard(game)).join('');
   }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  renderGameCards();
-});
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', renderGames);
