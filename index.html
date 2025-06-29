@@ -677,16 +677,25 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      const games = await response.json().games;
+      const data = await response.json();
+      const games = data.games;
       
       // Clear loading state
       gamesGrid.innerHTML = '';
       
       // Generate game cards
-      games.forEach((game, index) => {
-        const gameCard = createGameCard(game, index);
-        gamesGrid.appendChild(gameCard);
-      });
+      if (Array.isArray(games)) { // Check if 'games' is an array
+        games.forEach((game, index) => {
+          const gameCard = createGameCard(game, index);
+          gamesGrid.appendChild(gameCard);
+        });
+      } else {
+        console.error("Games data is not an array:", games);
+      }
+      //games.forEach((game, index) => {
+      //  const gameCard = createGameCard(game, index);
+      //  gamesGrid.appendChild(gameCard);
+      //});
       
       // Add floating animation to cards after they're created
       document.querySelectorAll('.game-card').forEach((card, index) => {
