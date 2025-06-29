@@ -9,6 +9,12 @@
     max-width: 50%; /* Prevents it from exceeding the container's width */
 }
 
+.store-icon {
+    width: 48px; /* Set a fixed width for the icons */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 15%; /* Prevents it from exceeding the container's width */
+}
+
 .label {
     font-size: 18px; /* Set font size for labels */
     margin-top: 10px; /* Space between icon and label */
