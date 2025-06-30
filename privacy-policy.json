@@ -1,6 +1,5 @@
 {
-  "privacySections" : [
-          {
+  "privacySections": [{
             "title": "Introduction",
             "content": `
               <p>Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
