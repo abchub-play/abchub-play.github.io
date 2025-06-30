@@ -1,0 +1,64 @@
+{
+  "privacySections" = [
+          {
+            "title": "Introduction",
+            "content": `
+              <p>Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
+              <div class="highlight">
+                <p>We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+              </div>
+            `
+          },
+          {
+            "title": "Information We Collect",
+            "content": `
+              <p>We may collect the following types of information:</p>
+              <ul>
+                <li><strong>Personal Information:</strong> When you create an account or make in-game purchases, we may collect personal information such as your name, email address, and payment information.</li>
+                <li><strong>Usage Data:</strong> We collect data about how you interact with our game, including your gameplay activity, device information (e.g., device type, operating system), and IP address.</li>
+                <li><strong>Analytics Data:</strong> We use third-party analytics services (e.g., Facebook Analytics) to help us understand how players use our game.</li>
+                <li><strong>Advertising Data:</strong> We may show ads in our game. Third-party advertisers may collect information about your interactions with these ads.</li>
+              </ul>
+            `
+          },
+          {
+            "title": "How We Use Your Information",
+            "content": `
+              <p>We use the information we collect in various ways, including to:</p>
+              <ul>
+                <li>Provide, operate, and maintain our game</li>
+                <li>Improve, personalize, and expand our game</li>
+                <li>Understand and analyze how you use our game</li>
+                <li>Develop new products, services, features, and functionality</li>
+                <li>Send you marketing and promotional communications</li>
+                <li>Find and prevent fraud</li>
+              </ul>
+            `
+          },
+          {
+            "title": "Information Sharing",
+            "content": `
+              <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+              <ul>
+                <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
+                <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
+              </ul>
+            `
+          },
+          {
+            "title": "Security of Your Information",
+            "content": `
+              <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+              <div class="highlight">
+                <p>We implement industry-standard encryption technologies to protect your data both in transit and at rest. All sensitive information is stored using advanced encryption methods.</p>
+              </div>
+            `
+          },
+          {
+            "title": "Children's Privacy",
+            "content": `
+              <p>Our game is intended for users of all ages, but we take special care to protect the privacy of young children. We do not knowingly collect personal information from children under the age of 13 without parental consent.</p>
+              <p>If we learn we have collected or received personal information from a child under 13 without verification of parental consent, we will delete that information. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+            `
+          }]
+}
