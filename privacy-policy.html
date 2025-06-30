@@ -469,13 +469,13 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      // Generate privacy policy sections
+      let contentHTML = '';
+      document.body.style.counterReset = "section-counter";
       /*const data = await response.json();
 
       // Reset the counter
       document.body.style.counterReset = "section-counter";
-      
-      // Generate privacy policy sections
-      let contentHTML = '';
       
       // Using the sections from the JSON structure
       // Note: The JSON structure might be different, we'll adapt accordingly
@@ -490,7 +490,7 @@
       } else {
         // Fallback to a default set of sections
         */
-        sections = [
+        let sections = [
           {
             "title": "Introduction",
             "content": `
