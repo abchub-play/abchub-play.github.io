@@ -148,6 +148,7 @@
       padding-bottom: 30px;
       border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
       position: relative;
+      counter-increment: section-counter;
     }
     
     .policy-section:last-child {
@@ -168,7 +169,7 @@
     }
     
     .section-title::before {
-      content: '';
+      content: counter(section-counter);
       position: absolute;
       left: 0;
       width: 30px;
@@ -181,16 +182,6 @@
       font-weight: 700;
       color: #16213e;
     }
-    
-    .section-title:nth-child(1)::before { content: '1'; }
-    .section-title:nth-child(2)::before { content: '2'; }
-    .section-title:nth-child(3)::before { content: '3'; }
-    .section-title:nth-child(4)::before { content: '4'; }
-    .section-title:nth-child(5)::before { content: '5'; }
-    .section-title:nth-child(6)::before { content: '6'; }
-    .section-title:nth-child(7)::before { content: '7'; }
-    .section-title:nth-child(8)::before { content: '8'; 
-    .section-title:nth-child(9)::before { content: '9'; }
     
     .section-content {
       color: #e0e0e0;
@@ -268,11 +259,63 @@
       color: #ffd166;
       text-decoration: none;
     }
+
+    /* Loading State */
+    .loader-container {
+      display: flex;
+      justify-content: center;
+      padding: 60px;
+    }
+    
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-bottom-color: #ff6b6b;
+      border-radius: 50%;
+      display: inline-block;
+      animation: rotation 1s linear infinite;
+    }
+    
+    .error-message {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255, 107, 107, 0.1);
+      border-radius: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+    
+    .error-message i {
+      font-size: 3rem;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+    
+    .retry-button {
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      display: inline-block;
+    }
     
     /* Animations */
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       100% { background-position: 200% 50%; }
+    }
+    
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     
     @keyframes fadeIn {
@@ -284,16 +327,6 @@
       animation: fadeIn 0.6s ease-out forwards;
       opacity: 0;
     }
-    
-    .policy-section:nth-child(1) { animation-delay: 0.1s; }
-    .policy-section:nth-child(2) { animation-delay: 0.2s; }
-    .policy-section:nth-child(3) { animation-delay: 0.3s; }
-    .policy-section:nth-child(4) { animation-delay: 0.4s; }
-    .policy-section:nth-child(5) { animation-delay: 0.5s; }
-    .policy-section:nth-child(6) { animation-delay: 0.6s; }
-    .policy-section:nth-child(7) { animation-delay: 0.7s; }
-    .policy-section:nth-child(8) { animation-delay: 0.8s; }
-    .policy-section:nth-child(9) { animation-delay: 0.9s; }
     
     /* Responsive adjustments */
     @media (max-width: 900px) {
@@ -399,82 +432,163 @@
     <div class="effective-date">Effective Date: November 11, 2025</div>
   </header>
   
-  <div class="privacy-content">
-    <section class="policy-section">
-      <h2 class="section-title">Introduction</h2>
-      <div class="section-content">
-        <p>Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
-        <div class="highlight">
-          <p>We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">Information We Collect</h2>
-      <div class="section-content">
-        <p>We may collect the following types of information:</p>
-        <ul>
-          <li><strong>Personal Information:</strong> When you create an account or make in-game purchases, we may collect personal information such as your name, email address, and payment information.</li>
-          <li><strong>Usage Data:</strong> We collect data about how you interact with our game, including your gameplay activity, device information (e.g., device type, operating system), and IP address.</li>
-          <li><strong>Analytics Data:</strong> We use third-party analytics services (e.g., Facebook Analytics) to help us understand how players use our game.</li>
-          <li><strong>Advertising Data:</strong> We may show ads in our game. Third-party advertisers may collect information about your interactions with these ads.</li>
-        </ul>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">How We Use Your Information</h2>
-      <div class="section-content">
-        <p>We use the information we collect in various ways, including to:</p>
-        <ul>
-          <li>Provide, operate, and maintain our game</li>
-          <li>Improve, personalize, and expand our game</li>
-          <li>Understand and analyze how you use our game</li>
-          <li>Develop new products, services, features, and functionality</li>
-          <li>Send you marketing and promotional communications</li>
-          <li>Find and prevent fraud</li>
-        </ul>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">Information Sharing</h2>
-      <div class="section-content">
-        <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
-        <ul>
-          <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
-          <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
-        </ul>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">Security of Your Information</h2>
-      <div class="section-content">
-        <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
-        <div class="highlight">
-          <p>We implement industry-standard encryption technologies to protect your data both in transit and at rest. All sensitive information is stored using advanced encryption methods.</p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="policy-section">
-      <h2 class="section-title">Children's Privacy</h2>
-      <div class="section-content">
-        <p>Our game is intended for users of all ages, but we take special care to protect the privacy of young children. We do not knowingly collect personal information from children under the age of 13 without parental consent.</p>
-        <p>If we learn we have collected or received personal information from a child under 13 without verification of parental consent, we will delete that information. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
-      </div>
-    </section>
+  <div class="privacy-content" id="privacyContent">
+    <!-- Loading state -->
+    <div class="loader-container">
+      <span class="loader"></span>
+      <p style="margin-top: 20px; color: #b8c1ec;">Loading privacy policy...</p>
+    </div>
   </div>
   
   <div class="privacy-footer">
-    <p>© 2025 A,B,C & Friendly Play. All rights reserved.
-    </p>
+    <p>© 2025 A,B,C & Friendly Play. All rights reserved.</p>
   </div>
 </main>
 
 <script>
+  // JSON data URL
+  const PRIVACY_JSON_URL = 'https://abchub-play.github.io/privacy-policy.json';
+  
+  // Function to load privacy content from JSON
+  async function loadPrivacyContent() {
+    const privacyContent = document.getElementById('privacyContent');
+    
+    try {
+      // Show loading state
+      privacyContent.innerHTML = `
+        <div class="loader-container">
+          <span class="loader"></span>
+          <p style="margin-top: 20px; color: #b8c1ec;">Loading privacy policy...</p>
+        </div>
+      `;
+      
+      // Fetch privacy policy data
+      const response = await fetch(PRIVACY_JSON_URL);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      // Reset the counter
+      document.body.style.counterReset = "section-counter";
+      
+      // Generate privacy policy sections
+      let contentHTML = '';
+      
+      // Using the sections from the JSON structure
+      // Note: The JSON structure might be different, we'll adapt accordingly
+      // For this example, we'll assume the JSON has a "privacySections" array
+      // If it doesn't, we'll use a fallback
+      
+      let sections = [];
+      
+      // Check if the JSON has privacy sections
+      if (data.privacySections && Array.isArray(data.privacySections)) {
+        sections = data.privacySections;
+      } else {
+        // Fallback to a default set of sections
+        sections = [
+          {
+            "title": "Introduction",
+            "content": `
+              <p>Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
+              <div class="highlight">
+                <p>We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+              </div>
+            `
+          },
+          {
+            "title": "Information We Collect",
+            "content": `
+              <p>We may collect the following types of information:</p>
+              <ul>
+                <li><strong>Personal Information:</strong> When you create an account or make in-game purchases, we may collect personal information such as your name, email address, and payment information.</li>
+                <li><strong>Usage Data:</strong> We collect data about how you interact with our game, including your gameplay activity, device information (e.g., device type, operating system), and IP address.</li>
+                <li><strong>Analytics Data:</strong> We use third-party analytics services (e.g., Facebook Analytics) to help us understand how players use our game.</li>
+                <li><strong>Advertising Data:</strong> We may show ads in our game. Third-party advertisers may collect information about your interactions with these ads.</li>
+              </ul>
+            `
+          },
+          {
+            "title": "How We Use Your Information",
+            "content": `
+              <p>We use the information we collect in various ways, including to:</p>
+              <ul>
+                <li>Provide, operate, and maintain our game</li>
+                <li>Improve, personalize, and expand our game</li>
+                <li>Understand and analyze how you use our game</li>
+                <li>Develop new products, services, features, and functionality</li>
+                <li>Send you marketing and promotional communications</li>
+                <li>Find and prevent fraud</li>
+              </ul>
+            `
+          },
+          {
+            "title": "Information Sharing",
+            "content": `
+              <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+              <ul>
+                <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
+                <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
+              </ul>
+            `
+          },
+          {
+            "title": "Security of Your Information",
+            "content": `
+              <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+              <div class="highlight">
+                <p>We implement industry-standard encryption technologies to protect your data both in transit and at rest. All sensitive information is stored using advanced encryption methods.</p>
+              </div>
+            `
+          },
+          {
+            "title": "Children's Privacy",
+            "content": `
+              <p>Our game is intended for users of all ages, but we take special care to protect the privacy of young children. We do not knowingly collect personal information from children under the age of 13 without parental consent.</p>
+              <p>If we learn we have collected or received personal information from a child under 13 without verification of parental consent, we will delete that information. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+            `
+          }
+        ];
+      }
+      
+      // Generate sections
+      sections.forEach((section, index) => {
+        contentHTML += `
+          <section class="policy-section" style="animation-delay: ${index * 0.1}s">
+            <h2 class="section-title">${section.title}</h2>
+            <div class="section-content">
+              ${section.content}
+            </div>
+          </section>
+        `;
+      });
+      
+      privacyContent.innerHTML = contentHTML;
+      
+      // Initialize animations
+      document.querySelectorAll('.policy-section').forEach(section => {
+        section.style.animationPlayState = 'running';
+      });
+      
+    } catch (error) {
+      console.error('Error loading privacy content:', error);
+      privacyContent.innerHTML = `
+        <div class="error-message">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h3>Couldn't Load Privacy Policy</h3>
+          <p>We're having trouble loading our privacy policy at the moment. Please try again later.</p>
+          <p><small>Error: ${error.message}</small></p>
+          <button class="retry-button" onclick="loadPrivacyContent()">
+            <i class="fas fa-redo"></i> Try Again
+          </button>
+        </div>
+      `;
+    }
+  }
+  
   // Add active class to current nav item
   document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
@@ -486,6 +600,9 @@
         link.classList.add('active');
       }
     });
+    
+    // Load privacy content
+    loadPrivacyContent();
   });
   
   // Animate sections on scroll
@@ -502,10 +619,6 @@
       }
     });
   }, observerOptions);
-  
-  document.querySelectorAll('.policy-section').forEach(section => {
-    observer.observe(section);
-  });
 </script>
     
 </body>
