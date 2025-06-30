@@ -148,7 +148,7 @@
       padding-bottom: 30px;
       border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
       position: relative;
-      counter-increment: section-counter;
+      counter-increment: section-counter; /* Added counter */
     }
     
     .policy-section:last-child {
@@ -169,7 +169,7 @@
     }
     
     .section-title::before {
-      content: counter(section-counter);
+      content: counter(section-counter); /* Use counter for numbering */
       position: absolute;
       left: 0;
       width: 30px;
@@ -446,119 +446,104 @@
 </main>
 
 <script>
-  // JSON data URL
-  const PRIVACY_JSON_URL = 'https://abchub-play.github.io/privacy-policy.json';
-  
-  // Function to load privacy content from JSON
-  async function loadPrivacyContent() {
+  // JSON data for privacy policy sections
+  const PRIVACY_SECTIONS = [
+    {
+      "title": "Introduction",
+      "content": `
+        <p>Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
+        <div class="highlight">
+          <p>We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+        </div>
+      `
+    },
+    {
+      "title": "Information We Collect",
+      "content": `
+        <p>We may collect the following types of information:</p>
+        <ul>
+          <li><strong>Personal Information:</strong> When you create an account or make in-game purchases, we may collect personal information such as your name, email address, and payment information.</li>
+          <li><strong>Usage Data:</strong> We collect data about how you interact with our game, including your gameplay activity, device information (e.g., device type, operating system), and IP address.</li>
+          <li><strong>Analytics Data:</strong> We use third-party analytics services (e.g., Facebook Analytics) to help us understand how players use our game.</li>
+          <li><strong>Advertising Data:</strong> We may show ads in our game. Third-party advertisers may collect information about your interactions with these ads.</li>
+        </ul>
+      `
+    },
+    {
+      "title": "How We Use Your Information",
+      "content": `
+        <p>We use the information we collect in various ways, including to:</p>
+        <ul>
+          <li>Provide, operate, and maintain our game</li>
+          <li>Improve, personalize, and expand our game</li>
+          <li>Understand and analyze how you use our game</li>
+          <li>Develop new products, services, features, and functionality</li>
+          <li>Send you marketing and promotional communications</li>
+          <li>Find and prevent fraud</li>
+        </ul>
+      `
+    },
+    {
+      "title": "Information Sharing",
+      "content": `
+        <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+        <ul>
+          <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
+          <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
+        </ul>
+      `
+    },
+    {
+      "title": "Security of Your Information",
+      "content": `
+        <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+        <div class="highlight">
+          <p>We implement industry-standard encryption technologies to protect your data both in transit and at rest. All sensitive information is stored using advanced encryption methods.</p>
+        </div>
+      `
+    },
+    {
+      "title": "Children's Privacy",
+      "content": `
+        <p>Our game is intended for users of all ages, but we take special care to protect the privacy of young children. We do not knowingly collect personal information from children under the age of 13 without parental consent.</p>
+        <p>If we learn we have collected or received personal information from a child under 13 without verification of parental consent, we will delete that information. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
+      `
+    },
+    {
+      "title": "Data Retention",
+      "content": `
+        <p>We will retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our policies.</p>
+        <p>Usage data is generally retained for a shorter period, except when this data is used to strengthen the security or to improve the functionality of our game, or we are legally obligated to retain this data for longer time periods.</p>
+      `
+    },
+    {
+      "title": "International Transfers",
+      "content": `
+        <p>Your information, including personal data, may be transferred to — and maintained on — computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction.</p>
+        <p>We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your personal data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.</p>
+      `
+    },
+    {
+      "title": "Changes to This Policy",
+      "content": `
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+        <p>We will let you know via email and/or a prominent notice in our game, prior to the change becoming effective and update the "Effective Date" at the top of this Privacy Policy.</p>
+        <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+      `
+    }
+  ];
+
+  // Function to load privacy content
+  function loadPrivacyContent() {
     const privacyContent = document.getElementById('privacyContent');
     
     try {
-      // Show loading state
-      privacyContent.innerHTML = `
-        <div class="loader-container">
-          <span class="loader"></span>
-          <p style="margin-top: 20px; color: #b8c1ec;">Loading privacy policy...</p>
-        </div>
-      `;
-      
-      // Fetch privacy policy data
-      const response = await fetch(PRIVACY_JSON_URL);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      // Generate privacy policy sections
-      let contentHTML = '';
-      document.body.style.counterReset = "section-counter";
-      /*const data = await response.json();
-
       // Reset the counter
       document.body.style.counterReset = "section-counter";
       
-      // Using the sections from the JSON structure
-      // Note: The JSON structure might be different, we'll adapt accordingly
-      // For this example, we'll assume the JSON has a "privacySections" array
-      // If it doesn't, we'll use a fallback
+      let contentHTML = '';
       
-      let sections = [];
-      
-      // Check if the JSON has privacy sections
-      if (data.privacySections && Array.isArray(data.privacySections)) {
-        sections = data.privacySections;
-      } else {
-        // Fallback to a default set of sections
-        */
-        let sections = [
-          {
-            "title": "Introduction",
-            "content": `
-              <p>Welcome to A,B,C games! Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you play our game, including any related services, features, or content.</p>
-              <div class="highlight">
-                <p>We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
-              </div>
-            `
-          },
-          {
-            "title": "Information We Collect",
-            "content": `
-              <p>We may collect the following types of information:</p>
-              <ul>
-                <li><strong>Personal Information:</strong> When you create an account or make in-game purchases, we may collect personal information such as your name, email address, and payment information.</li>
-                <li><strong>Usage Data:</strong> We collect data about how you interact with our game, including your gameplay activity, device information (e.g., device type, operating system), and IP address.</li>
-                <li><strong>Analytics Data:</strong> We use third-party analytics services (e.g., Facebook Analytics) to help us understand how players use our game.</li>
-                <li><strong>Advertising Data:</strong> We may show ads in our game. Third-party advertisers may collect information about your interactions with these ads.</li>
-              </ul>
-            `
-          },
-          {
-            "title": "How We Use Your Information",
-            "content": `
-              <p>We use the information we collect in various ways, including to:</p>
-              <ul>
-                <li>Provide, operate, and maintain our game</li>
-                <li>Improve, personalize, and expand our game</li>
-                <li>Understand and analyze how you use our game</li>
-                <li>Develop new products, services, features, and functionality</li>
-                <li>Send you marketing and promotional communications</li>
-                <li>Find and prevent fraud</li>
-              </ul>
-            `
-          },
-          {
-            "title": "Information Sharing",
-            "content": `
-              <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
-              <ul>
-                <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
-                <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
-              </ul>
-            `
-          },
-          {
-            "title": "Security of Your Information",
-            "content": `
-              <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
-              <div class="highlight">
-                <p>We implement industry-standard encryption technologies to protect your data both in transit and at rest. All sensitive information is stored using advanced encryption methods.</p>
-              </div>
-            `
-          },
-          {
-            "title": "Children's Privacy",
-            "content": `
-              <p>Our game is intended for users of all ages, but we take special care to protect the privacy of young children. We do not knowingly collect personal information from children under the age of 13 without parental consent.</p>
-              <p>If we learn we have collected or received personal information from a child under 13 without verification of parental consent, we will delete that information. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:abchub.help@gmail.com" class="contact-link">abchub.help@gmail.com</a>.</p>
-            `
-          }
-        ];
-      /*
-      }
-      */
-      
-      // Generate sections
-      sections.forEach((section, index) => {
+      PRIVACY_SECTIONS.forEach((section, index) => {
         contentHTML += `
           <section class="policy-section" style="animation-delay: ${index * 0.1}s">
             <h2 class="section-title">${section.title}</h2>
