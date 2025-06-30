@@ -468,9 +468,9 @@
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
-      const data = await response.json();
-      
+
+      /*const data = await response.json();
+
       // Reset the counter
       document.body.style.counterReset = "section-counter";
       
@@ -489,6 +489,7 @@
         sections = data.privacySections;
       } else {
         // Fallback to a default set of sections
+        */
         sections = [
           {
             "title": "Introduction",
@@ -552,7 +553,9 @@
             `
           }
         ];
+      /*
       }
+      */
       
       // Generate sections
       sections.forEach((section, index) => {
