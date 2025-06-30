@@ -1,774 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Games - ABC & Friendly Play</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-    
-    body {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      min-height: 100vh;
-      color: #fff;
-      padding-top: 90px;
-      overflow-x: hidden;
-    }
-    
-    /* Modern Navbar Styles */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      z-index: 1000;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .navbar.scrolled {
-      background: rgba(10, 15, 35, 0.95);
-      padding: 10px 40px;
-    }
-    
-    .company-name {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(90deg, #ff6b6b, #ffa502, #ff6b6b);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 3s linear infinite;
-      letter-spacing: -0.5px;
-    }
-    
-    .company-name::before {
-      content: "🎮";
-      font-size: 1.5rem;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    
-    .nav-link {
-      position: relative;
-      text-decoration: none;
-      color: #e0e0e0;
-      font-weight: 500;
-      font-size: 1.1rem;
-      padding: 8px 0;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-link:hover {
-      color: #fff;
-    }
-    
-    .nav-link.active {
-      color: #fff;
-      font-weight: 600;
-    }
-    
-    .nav-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #ff6b6b, #ffa502);
-      border-radius: 3px;
-    }
-    
-    /* Hero Section */
-    .hero {
-      position: relative;
-      padding: 80px 20px;
-      text-align: center;
-      overflow: hidden;
-      margin-bottom: 60px;
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at center, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
-      z-index: -1;
-    }
-    
-    .hero-title {
-      font-size: 4rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #a1c4fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -1px;
-      line-height: 1.1;
-    }
-    
-    .hero-subtitle {
-      font-size: 1.5rem;
-      color: #b8c1ec;
-      max-width: 700px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
-    }
-    
-    .cta-button {
-      background: linear-gradient(135deg, #ff6b6b, #ffa502);
-      color: white;
-      border: none;
-      padding: 16px 40px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
-    }
-    
-    /* Loading State */
-    .loader-container {
-      display: flex;
-      justify-content: center;
-      padding: 60px;
-    }
-    
-    .loader {
-      width: 48px;
-      height: 48px;
-      border: 5px solid rgba(255, 255, 255, 0.1);
-      border-bottom-color: #ff6b6b;
-      border-radius: 50%;
-      display: inline-block;
-      animation: rotation 1s linear infinite;
-    }
-    
-    .error-message {
-      text-align: center;
-      padding: 40px;
-      background: rgba(255, 107, 107, 0.1);
-      border-radius: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-      border: 1px solid rgba(255, 107, 107, 0.3);
-    }
-    
-    .error-message i {
-      font-size: 3rem;
-      color: #ff6b6b;
-      margin-bottom: 20px;
-    }
-    
-    .retry-button {
-      background: linear-gradient(135deg, #ff6b6b, #ffa502);
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 20px;
-      display: inline-block;
-    }
-    
-    /* Games Section */
-    .games-container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-    }
-    
-    .section-title {
-      text-align: center;
-      font-size: 2.8rem;
-      margin-bottom: 60px;
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 5px;
-      background: linear-gradient(90deg, #ff6b6b, #ffa502);
-      border-radius: 5px;
-    }
-    
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 40px;
-    }
-    
-    .game-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .game-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      background: rgba(255, 255, 255, 0.08);
-    }
-    
-    .game-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background: linear-gradient(90deg, #ff6b6b, #ffa502);
-    }
-    
-    .game-badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #ff6b6b, #ffa502);
-      color: white;
-      padding: 6px 15px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      z-index: 2;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .game-content-wrapper {
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    
-    .game-icon-container {
-      width: 120px;
-      height: 120px;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .game-icon {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-      transition: transform 0.3s ease;
-    }
-    
-    .game-card:hover .game-icon {
-      transform: scale(1.1);
-    }
-    
-    .game-info {
-      text-align: center;
-    }
-    
-    .game-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #ffd166, #ffa502);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .game-subtitle {
-      color: #b8c1ec;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-    
-    .game-rating {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 25px;
-    }
-    
-    .stars {
-      color: #ffd166;
-      font-size: 1.3rem;
-      letter-spacing: 2px;
-    }
-    
-    .rating-text {
-      color: #b8c1ec;
-      font-weight: 600;
-    }
-    
-    .store-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    
-    .store-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    
-    .store-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
-    }
-    
-    .store-icon {
-      width: 24px;
-      height: 24px;
-    }
-    
-    /* Features Section */
-    .features {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 80px 20px;
-      margin-top: 60px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .features-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
-    
-    .feature-card {
-      text-align: center;
-      padding: 40px 30px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      transition: all 0.4s ease;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-10px);
-      background: rgba(255, 255, 255, 0.08);
-    }
-    
-    .feature-icon {
-      font-size: 3.5rem;
-      margin-bottom: 25px;
-      background: linear-gradient(135deg, #ff6b6b, #ffa502);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .feature-title {
-      font-size: 1.7rem;
-      margin-bottom: 15px;
-      color: #ffd166;
-    }
-    
-    .feature-description {
-      color: #b8c1ec;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-    
-    /* Footer */
-    .footer {
-      padding: 60px 20px 30px;
-      text-align: center;
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-    
-    .footer-link {
-      color: #b8c1ec;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .footer-link:hover {
-      color: #ffa502;
-    }
-    
-    .copyright {
-      color: #b8c1ec;
-      font-size: 1rem;
-      margin-top: 30px;
-    }
-    
-    /* Animations */
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-    
-    @keyframes rotation {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .floating {
-      animation: float 5s ease-in-out infinite;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 900px) {
-      .hero-title {
-        font-size: 3.2rem;
-      }
-      
-      .hero-subtitle {
-        font-size: 1.3rem;
-      }
-      
-      .section-title {
-        font-size: 2.3rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 15px 20px;
-      }
-      
-      .company-name {
-        font-size: 1.5rem;
-      }
-      
-      .nav-links {
-        gap: 15px;
-      }
-      
-      .hero-title {
-        font-size: 2.8rem;
-      }
-      
-      .hero {
-        padding: 60px 20px;
-      }
-      
-      .games-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .hero-title {
-        font-size: 2.3rem;
-      }
-      
-      .hero-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .store-buttons {
-        flex-direction: column;
-        gap: 12px;
-      }
-      
-      .store-btn {
-        justify-content: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play. Learn. Grow. - App Download</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 152, 0, 0.15);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -70px;
+            right: -70px;
+            width: 250px;
+            height: 250px;
+            background: rgba(33, 150, 243, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff6f00, #ffa000, #ff6f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -1px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .store-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            min-width: 220px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .store-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .store-button:hover::after {
+            animation: shimmer 1.5s infinite;
+        }
+        
+        .app-store {
+            background: linear-gradient(to right, #ff6f00, #ff8f00);
+            color: white;
+        }
+        
+        .google-play {
+            background: linear-gradient(to right, #ff8f00, #ff6f00);
+            color: white;
+        }
+        
+        .store-button i {
+            font-size: 1.8rem;
+            margin-right: 12px;
+        }
+        
+        .store-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .store-button:active {
+            transform: translateY(-2px);
+        }
+        
+        .button-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.3;
+        }
+        
+        .button-text span:first-child {
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+        
+        .button-text span:last-child {
+            font-size: 1.2rem;
+        }
+        
+        .app-preview {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+        }
+        
+        .phone {
+            background: #222;
+            border-radius: 30px;
+            padding: 15px 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .phone-screen {
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(45deg, #ff9d00, #ff6a00);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .app-icon i {
+            font-size: 40px;
+            color: #ff6f00;
+        }
+        
+        .phone-screen h3 {
+            margin: 15px 0;
+            font-size: 1.4rem;
+        }
+        
+        .phone-screen p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .app-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .app-preview {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- Modern Vibrant Navbar -->
-<nav class="navbar" id="navbar">
-  <div class="company-name">A,B,C & Friendly Play</div>
-  
-  <div class="nav-links">
-    <a href="index.html" class="nav-link active">Games</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-    <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero">
-  <h1 class="hero-title">Play. Learn. Grow.</h1>
-  <button class="cta-button">
-    <i class="fas fa-play-circle"></i> Start Playing
-  </button>
-</section>
-
-<!-- Games Section -->
-<section class="games-container">
-  <h2 class="section-title">Our Featured Games</h2>
-  
-  <div class="games-grid" id="gamesGrid">
-    <!-- Loading state -->
-    <div class="loader-container">
-      <span class="loader"></span>
-    </div>
-  </div>
-</section>
-
-<!-- Features Section -->
-<section class="features">
-  <div class="features-container">
-    <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fas fa-graduation-cap"></i>
-      </div>
-      <h3 class="feature-title">Educational</h3>
-      <p class="feature-description">Our games combine fun with learning to help develop cognitive skills while entertaining.</p>
-    </div>
-    
-    <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fas fa-users"></i>
-      </div>
-      <h3 class="feature-title">Family Friendly</h3>
-      <p class="feature-description">Safe environment with content suitable for players of all ages. Perfect for family time.</p>
-    </div>
-    
-    <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fas fa-gamepad"></i>
-      </div>
-      <h3 class="feature-title">Multiplayer Fun</h3>
-      <p class="feature-description">Connect with friends and family for collaborative gaming sessions and shared experiences.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-links">
-    <a href="index.html" class="footer-link">Games</a>
-    <a href="contact.html" class="footer-link">Contact</a>
-    <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
-  </div>
-  
-  <p class="copyright">© 2025 A,B,C & Friendly Play. All rights reserved.</p>
-</footer>
-
-<script>
-  // JSON data URL (replace with your GitHub Pages URL)
-  const GAMES_JSON_URL = 'https://abchub-play.github.io/games.json';
-  
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
-  
-  // Add active class to current nav item
-  document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPage = window.location.pathname.split('/').pop();
-    
-    navLinks.forEach(link => {
-      const linkPage = link.getAttribute('href');
-      if (currentPage === linkPage || (currentPage === "" && linkPage === "index.html")) {
-        link.classList.add('active');
-      }
-    });
-    
-    // Load games after DOM is ready
-    loadGames();
-  });
-  
-  // Function to load games from JSON
-  async function loadGames() {
-    const gamesGrid = document.getElementById('gamesGrid');
-    
-    try {
-      // Show loading state
-      gamesGrid.innerHTML = `
-        <div class="loader-container">
-          <span class="loader"></span>
-          <p style="margin-top: 20px; color: #b8c1ec;">Loading our amazing games...</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Play. Learn. Grow.</h1>
+            <p class="hero-subtitle">Join millions of users who are transforming their learning experience through play. Download our app today and start your journey!</p>
+            
+            <div class="app-buttons">
+                <a href="https://developer.apple.com/app-store/" target="_blank" class="store-button app-store">
+                    <i class="fab fa-apple"></i>
+                    <div class="button-text">
+                        <span>Download on the</span>
+                        <span>App Store</span>
+                    </div>
+                </a>
+                
+                <a href="https://play.google.com/store" target="_blank" class="store-button google-play">
+                    <i class="fab fa-google-play"></i>
+                    <div class="button-text">
+                        <span>GET IT ON</span>
+                        <span>Google Play</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="app-preview">
+                <div class="phone">
+                    <div class="phone-screen">
+                        <div class="app-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Interactive Learning</h3>
+                        <p>Engaging games that make learning fun and effective</p>
+                    </div>
+                </div>
+                <div class="phone">
+                    <div class="phone-screen">
+                        <div class="app-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Track Progress</h3>
+                        <p>Monitor your growth and achievements over time</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      `;
-      
-      // Fetch games data
-      const response = await fetch(GAMES_JSON_URL);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      const games = data.games;
-      
-      // Clear loading state
-      gamesGrid.innerHTML = '';
-      
-      // Generate game cards
-      if (Array.isArray(games)) { // Check if 'games' is an array
-        games.forEach((game, index) => {
-          const gameCard = createGameCard(game, index);
-          gamesGrid.appendChild(gameCard);
+    </section>
+
+    <script>
+        // Add animation effect to buttons on hover
+        document.querySelectorAll('.store-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-7px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
         });
-      } else {
-        console.error("Games data is not an array:", games);
-      }
-      //games.forEach((game, index) => {
-      //  const gameCard = createGameCard(game, index);
-      //  gamesGrid.appendChild(gameCard);
-      //});
-      
-      // Add floating animation to cards after they're created
-      document.querySelectorAll('.game-card').forEach((card, index) => {
-        card.classList.add('floating');
-        card.style.animationDelay = `${index * 0.2}s`;
-      });
-      
-    } catch (error) {
-      console.error('Error loading games:', error);
-      gamesGrid.innerHTML = `
-        <div class="error-message">
-          <i class="fas fa-exclamation-triangle"></i>
-          <h3>Couldn't Load Games</h3>
-          <p>We're having trouble loading our games at the moment. Please check your internet connection and try again.</p>
-          <p><small>Error: ${error.message}</small></p>
-          <button class="retry-button" onclick="loadGames()">
-            <i class="fas fa-redo"></i> Try Again
-          </button>
-        </div>
-      `;
-    }
-  }
-  
-  // Function to create game card HTML
-  function createGameCard(game, index) {
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    
-    // Generate star rating
-    const fullStars = '★'.repeat(Math.floor(game.rating));
-    const halfStar = game.rating % 1 >= 0.5 ? '½' : '';
-    const emptyStars = '☆'.repeat(5 - Math.ceil(game.rating));
-    const stars = fullStars + halfStar + emptyStars;
-    
-    // Create card HTML
-    card.innerHTML = `
-      ${game.badge ? `<div class="game-badge">${game.badge}</div>` : ''}
-      <div class="game-content-wrapper">
-        <div class="game-icon-container">
-          <img src="${game.icon}" alt="${game.title}" class="game-icon" loading="lazy">
-        </div>
-        <div class="game-info">
-          <h2 class="game-title">${game.title}</h2>
-          <p class="game-subtitle">${game.subtitle}</p>
-          <div class="game-rating">
-            <div class="stars">${stars}</div>
-            <span class="rating-text">${game.rating}/5</span>
-          </div>
-        </div>
-      </div>
-      <div class="store-buttons">
-        <a href="${game.appStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/app-store.png" alt="App Store" class="store-icon">
-          <span>App Store</span>
-        </a>
-        <a href="${game.playStoreLink}" target="_blank" rel="noopener noreferrer" class="store-btn">
-          <img src="https://abchub-play.github.io/icons/google-play.png" alt="Google Play" class="store-icon">
-          <span>Google Play</span>
-        </a>
-      </div>
-    `;
-    
-    return card;
-  }
-  
-  // CTA button animation
-  const ctaButton = document.querySelector('.cta-button');
-  if (ctaButton) {
-    ctaButton.addEventListener('mouseover', () => {
-      ctaButton.style.animation = 'none';
-      setTimeout(() => {
-        ctaButton.style.animation = 'float 1s ease-in-out';
-      }, 10);
-    });
-  }
-</script>
-    
+    </script>
 </body>
 </html>
