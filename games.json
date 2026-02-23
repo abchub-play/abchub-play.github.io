@@ -1,11 +1,22 @@
 {
-    "games": [{
+    "games": [
+    {
+        "title": "Tribal Primes",
+        "subtitle": "Idle Arcade",
+        "icon": "https://abchub-play.github.io/icons/games/daily-quest-icon.png",
+        "alt": "Tribal Primes",
+        "rating": 5,
+        "badge": "New",
+        "appStoreLink": "https://play.google.com/store/apps/details?id=com.primes.tribal",
+        "playStoreLink": "https://play.google.com/store/apps/details?id=com.primes.tribal"
+    },
+    {
         "title": "HELLO GOVERNOR!",
         "subtitle": "Arcade Idle",
         "icon": "https://abchub-play.github.io/icons/games/hello-governor-icon.png",
         "alt": "Hello Governor!",
         "rating": 5,
-        "badge": "New",
+        "badge": "",
         "appStoreLink": "https://apps.apple.com/app/id6504637193",
         "playStoreLink": "https://play.google.com/store/apps/details?id=com.hello.governor"
     },
