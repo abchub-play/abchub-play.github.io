@@ -263,6 +263,7 @@ transform: translateY(0);
             <a href="index.html" class="nav-link" id="gamesLink">Games</a>
             <a href="contact.html" class="nav-link" id="contactLink">Contact</a>
             <a href="privacy-policy.html" class="nav-link" id="privacyLink">Privacy Policy</a>
+            <a href="terms-of-service.html" class="nav-link" id="termsLink">Terms of Service</a>
             <button class="cta-button">Play Now</button>
         </div>
     </nav>
@@ -307,6 +308,14 @@ const page = path.split("/").pop();
                     <h1>Your Privacy Matters</h1>
                     <p>At A,B,C & Friendly Play, we take your privacy seriously. Our policy outlines how we collect, use, and protect your information.</p>
                     <p>We never sell your data to third parties and ensure all information is securely stored and processed.</p>
+                `;
+            }
+            else if (page === "terms-of-service.html") {
+                document.getElementById('termsLink').classList.add('active');
+                document.getElementById('pageContent').innerHTML = `
+                    <h1>Terms of Service</h1>
+                    <p>These terms explain the rules for using A,B,C & Friendly Play games and related services.</p>
+                    <p>By playing our games, you agree to these terms and our privacy practices.</p>
                 `;
             }
         }
