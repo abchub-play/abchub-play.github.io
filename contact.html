@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us - ABC & Friendly Play</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/site-motion.css">
   <style>
     * {
       margin: 0;
@@ -311,7 +312,7 @@ font-size: 1.1rem;
   </p>
   
   <div class="contact-grid">
-    <div class="contact-card floating">
+    <div class="contact-card">
       <div class="contact-icon">
         <i class="fas fa-envelope"></i>
       </div>
@@ -356,12 +357,10 @@ font-size: 1.1rem;
 </main>
 
 <script>
-  // Simple animation to make cards float at different times
   document.querySelectorAll('.floating').forEach((card, index) => {
-    card.style.animationDelay = ${index * 0.2}s;
+    card.style.animationDelay = `${index * 0.2}s`;
   });
   
-  // Add active class to current nav item
   document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     const currentPage = window.location.pathname.split('/').pop();
@@ -374,6 +373,7 @@ font-size: 1.1rem;
     });
   });
 </script>
+<script src="includes/site-motion.js"></script>
     
 </body>
 </html>

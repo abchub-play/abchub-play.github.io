@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Games - ABC & Friendly Play</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/site-motion.css">
   <style>
     * {
       margin: 0;
@@ -789,11 +790,9 @@
       //  gamesGrid.appendChild(gameCard);
       //});
       
-      // Add floating animation to cards after they're created
-      document.querySelectorAll('.game-card').forEach((card, index) => {
-        card.classList.add('floating');
-        card.style.animationDelay = `${index * 0.2}s`;
-      });
+      if (typeof window.siteMotionRefresh === 'function') {
+        window.siteMotionRefresh();
+      }
       
     } catch (error) {
       console.error('Error loading games:', error);
@@ -853,6 +852,7 @@
     return card;
   }
 </script>
+<script src="includes/site-motion.js"></script>
     
 </body>
 </html>
