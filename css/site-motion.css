@@ -2,7 +2,7 @@
   --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --motion-fast: 0.45s;
   --motion-med: 0.8s;
-  --bg-shift: 0deg;
+  --bg-shift: 0;
   --bg-depth: 1;
 }
 
@@ -12,11 +12,11 @@ html {
 
 body {
   position: relative;
-  isolation: isolate;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, hsla(calc(8 + var(--bg-shift)), 85%, 55%, 0.22), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 85% 20%, hsla(calc(210 + var(--bg-shift)), 70%, 50%, 0.18), transparent 50%),
-    radial-gradient(ellipse 60% 45% at 50% 90%, hsla(calc(35 + var(--bg-shift)), 90%, 50%, 0.14), transparent 55%),
+  background-color: #12162b !important;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, hsl(calc(8 + var(--bg-shift)) 85% 55% / 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 20%, hsl(calc(210 + var(--bg-shift)) 70% 50% / 0.18), transparent 50%),
+    radial-gradient(ellipse 60% 45% at 50% 90%, hsl(calc(35 + var(--bg-shift)) 90% 50% / 0.14), transparent 55%),
     linear-gradient(145deg, #12162b 0%, #0f1630 40%, #151a32 100%) !important;
   background-attachment: fixed !important;
   transition: filter 0.8s var(--motion-ease);
@@ -26,7 +26,7 @@ body {
 .ambient-bg {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
@@ -143,7 +143,7 @@ body.is-leaving .page-stage > *:not(.navbar) {
 }
 
 [data-reveal].is-inview {
-  opacity: 1;
+  opacity: 1 !important;
   transform: scale(1) translateY(0);
   filter: blur(0);
 }
@@ -194,6 +194,10 @@ body.is-leaving .page-stage > *:not(.navbar) {
   transform: translateY(-14px) scale(1.03) !important;
   box-shadow: 0 22px 44px rgba(0, 0, 0, 0.32) !important;
   border-color: rgba(255, 165, 2, 0.4) !important;
+}
+
+.policy-section[data-reveal] {
+  opacity: 0;
 }
 
 .nav-link {

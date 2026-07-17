@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service - ABC & Friendly Play</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/site-motion.css?v=2">
   <style>
     * {
       margin: 0;
@@ -15,7 +14,6 @@
     }
     
     body {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       min-height: 100vh;
       color: #fff;
       padding-top: 90px;
@@ -323,16 +321,6 @@
       100% { transform: rotate(360deg); }
     }
     
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .policy-section {
-      animation: fadeIn 0.6s ease-out forwards;
-      opacity: 0;
-    }
-    
     /* Responsive adjustments */
     @media (max-width: 900px) {
       .privacy-content {
@@ -415,6 +403,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/site-motion.css?v=3">
 </head>
 <body>
 
@@ -561,7 +550,7 @@
       
       TERMS_SECTIONS.forEach((section, index) => {
         contentHTML += `
-          <section class="policy-section" style="animation-delay: ${index * 0.1}s">
+          <section class="policy-section" data-reveal="zoom" style="--reveal-delay: ${index * 0.1}s">
             <h2 class="section-title">${section.title}</h2>
             <div class="section-content">
               ${section.content}
@@ -571,14 +560,12 @@
       });
       
       termsContent.innerHTML = contentHTML;
-      
-      document.querySelectorAll('.policy-section').forEach(section => {
-        section.style.animationPlayState = 'running';
-      });
 
-      if (typeof window.siteMotionRefresh === 'function') {
-        window.siteMotionRefresh();
-      }
+      requestAnimationFrame(() => {
+        if (typeof window.siteMotionRefresh === 'function') {
+          window.siteMotionRefresh();
+        }
+      });
       
     } catch (error) {
       console.error('Error loading terms content:', error);
@@ -610,21 +597,8 @@
     loadTermsContent();
   });
   
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-      }
-    });
-  }, observerOptions);
 </script>
-<script src="includes/site-motion.js?v=2"></script>
+<script src="includes/site-motion.js?v=3"></script>
     
 </body>
 </html>

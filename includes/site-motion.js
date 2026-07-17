@@ -129,8 +129,8 @@
     const update = () => {
       const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
       const progress = Math.min(Math.max(window.scrollY / max, 0), 1);
-      document.documentElement.style.setProperty('--bg-shift', `${progress * 64}deg`);
-      document.documentElement.style.setProperty('--bg-depth', `${0.65 + progress * 0.7}`);
+      document.documentElement.style.setProperty('--bg-shift', `${(progress * 64).toFixed(2)}`);
+      document.documentElement.style.setProperty('--bg-depth', `${(0.65 + progress * 0.7).toFixed(3)}`);
       ticking = false;
     };
 
