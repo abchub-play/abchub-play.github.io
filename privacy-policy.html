@@ -61,8 +61,11 @@
     
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 18px;
       align-items: center;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
     
     .nav-link {
@@ -70,8 +73,9 @@
       text-decoration: none;
       color: #e0e0e0;
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: 1rem;
       padding: 8px 0;
+      white-space: nowrap;
     }
     
     .nav-link.active {
@@ -420,8 +424,8 @@
   <div class="nav-links">
     <a href="index.html" class="nav-link">Games</a>
     <a href="contact.html" class="nav-link">Contact</a>
-    <a href="privacy-policy.html" class="nav-link active">Privacy Policy</a>
-    <a href="terms-of-service.html" class="nav-link">Terms of Service</a>
+    <a href="privacy-policy.html" class="nav-link active">Privacy</a>
+    <a href="terms-of-service.html" class="nav-link">Terms</a>
   </div>
 </nav>
 
